@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}S'enregistrer
+{% endblock %}
+
+{% block body %}
+	<h1 class="mb-2rem">S'enregistrer</h1>
+
+	{{ form_start(form) }}
+
+	{{ form_widget(form) }}
+
+	<button type="submit" class="btn btn-primary">
+		<i class="fas fa-save"></i>
+		S'enregistrer
+	</button>
+
+	{{ form_end(form) }}
+{% endblock %}
