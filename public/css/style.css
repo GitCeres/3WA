@@ -1,18 +1,231 @@
-html, body {
-    height: 100%;
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap');
+
+*,
+::before,
+::after {
+    box-sizing: border-box;
     margin: 0;
-    border: 0;
+    padding: 0;
+}
+
+nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 15px 25px;
+    background: rgba(240, 240, 240, 1);
+    box-shadow: inset 0px -1px 0px rgba(0, 0, 0, 0.5);
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 40% 20% 40%;
+}
+
+.nav-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    font-family: 'Dancing Script', sans-serif;
+    font-size: 2rem;
+    color: rgba(60, 60, 60, 1);
+}
+
+.hamburger {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    border: none;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.hamburger span {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background: rgba(0, 0, 0, 1);
+    position: absolute;
+    pointer-events: none;
+    transition: opacity 0.3s 0.15s ease-out;
+}
+
+.hamburger span:nth-child(1),
+.hamburger span:nth-child(3) {
+    transition: transform 0.3s ease-out;
+}
+
+.hamburger span:nth-child(1) {
+    transform: translateY(7px);
+}
+
+.hamburger span:nth-child(3) {
+    transform: translateY(-7px);
+}
+
+.hamburger.open span:nth-child(1) {
+    transform: translate(0) rotate(135deg);
+}
+
+.hamburger.open span:nth-child(2) {
+    opacity: 0;
+    transition: opacity 0s ease-out;
+}
+
+.hamburger.open span:nth-child(3) {
+    transform: translate(0) rotate(-135deg);
+}
+
+.navlinks-container-slide {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    background: rgba(240, 240, 240, 1);
+    top: 100%;
+    left: 0;
+    height: 100vh;
+    padding: 15px 50px 15px 20px;
+    border-right: 1px solid rgba(0, 0, 0, 0.5);
+    transform: translate(-100%);
+}
+
+.navlinks-container li {
+    margin: 5px 5px;
+    display: inline-block;
+}
+
+.navlinks-container a {
+    font-size: 1rem;
+    text-decoration: none;
+    color: rgba(60, 60, 60, 1);
+    position: relative;
+}
+
+.navlinks-container a::after {
+    content: '';
+    display: block;
+    position: absolute;
+    bottom: -3px;
+    width: 100%;
+    height: 1px;
+    transform: scaleX(0);
+    transform-origin: left;
+    background-color: rgba(30, 30, 30, 1);
+    transition: transform 0.3s ease-out;
+}
+
+.navlinks-container a:hover::after {
+    transform: scaleX(1);
+}
+
+.open {
+    transform: translate(0%);
+}
+
+.nav-authentication {
+    margin-left: auto;
+}
+
+.login-mobile {
+    text-decoration: none;
+    color: rgba(60, 60, 60, 1);
+}
+
+.login-mobile i {
+    display: block;
+    font-size: 1.5rem;
+}
+
+.sign-btn {
+    display: none;
+}
+
+.activate {
+    background-color: rgba(0, 0, 0, 0.85)
 }
 
 .container {
     height: 100%;
     padding: 0;
-    margin: 50px;
+    margin: 100px;
+}
+
+ul {
+    list-style-type: none;
 }
 
 .center {
     display: flex;
     justify-content: center;
+}
+
+/* Responsive */
+@media only screen and (min-width: 768px) {
+    nav {
+        padding: 0 25px;
+    }
+
+    .hamburger {
+        display: none;
+    }
+
+    .login-mobile {
+        display: none;
+    }
+
+    .navlinks-container-slide {
+        display: block;
+        border-right: unset;
+        position: unset;
+        top: unset;
+        left: unset;
+        height: unset;
+        background: unset;
+        transform: unset;
+        transition: unset;
+    }
+
+    .sign-btn {
+        display: flex;
+    }
+
+    .sign-btn button {
+        min-width: 100px;
+        padding: 5px 0px;
+        margin: 0 5px;
+        border-radius: 15px;
+        cursor: pointer;
+        border: none;
+        background-color: rgba(255, 255, 225, 1);
+    }
+
+    .sign-btn button:nth-child(2) {
+        background-color: rgba(150, 225, 255, 0.5)
+    }
+
+    .container {
+        margin-top: 125px;
+    }
+}
+
+@media only screen and (min-width: 992px) {
+    nav {
+        padding: 0 50px;
+    }
+
+    .container {
+        margin-top: 125px;
+    }
+}
+
+@media only screen and (min-width: 1200px) {
+    nav {
+        padding: 0 150px;
+    }
 }
 
 /* Dark Theme */
