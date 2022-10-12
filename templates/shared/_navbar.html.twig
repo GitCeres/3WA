@@ -38,8 +38,12 @@
         </a>
 
         <div class="sign-btn">
-            <button type="button">S'identifier</button>
-            <button type="button"><a href="{{ path('app_register') }}">S'enregistrer</a></button>
+            {% if app.user %}
+                <button type="button"><a href="{{ path('app_logout') }}">Déconnexion</a></button>
+            {% else %}
+                <button type="button"><a href="{{ path('app_login') }}">S'identifier</a></button>
+                <button type="button"><a href="{{ path('app_register') }}">S'enregistrer</a></button>
+            {% endif %}
         </div>
     </div>
 </nav>

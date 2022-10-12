@@ -1,10 +1,16 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}S'enregistrer
+{% block title %}Connexion
 {% endblock %}
 
 {% block body %}
-	<h1 class="mb-2rem">S'enregistrer</h1>
+	<h1 class="mb-2rem">S'identifier</h1>
+
+	{% if error %}
+		<div class="alert alert-danger login">
+			Identifiants incorrects
+		</div>
+    {% endif %}
 
 	{{ form_start(form) }}
 

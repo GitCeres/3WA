@@ -8,6 +8,10 @@
     padding: 0;
 }
 
+h1 {
+    text-align: center;
+}
+
 /* Nabar */
 nav {
     position: fixed;
@@ -27,7 +31,7 @@ nav {
     justify-content: center;
     text-decoration: none;
     font-family: 'Dancing Script', sans-serif;
-    font-size: 2rem;
+    font-size: 1.5rem;
     color: rgba(60, 60, 60, 1);
 }
 
@@ -169,7 +173,7 @@ button a {
     margin-bottom: 2rem;
 }
 
-/* Formulaire d'enregistrement */
+/* Formulaire d'enregistrement / connexion */
 #register {
     display: grid;
     grid-template-columns: 45% 45%;
@@ -177,8 +181,16 @@ button a {
     margin-bottom: 10px;
 }
 
+#login {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 #register div input,
-#register div select {
+#register div select,
+#login div input,
+#login div select {
     padding: 5px 10px;
     border-radius: 5px;
     border: 1px solid rgba(190, 190, 190, 1);
@@ -186,12 +198,17 @@ button a {
     margin-top: 5px;
 }
 
-#register div input {
+#register div input,
+#login div input {
     width: 100%;
 }
 
 #register div select {
     display: block;
+}
+
+#register li {
+    color: red;
 }
 
 /* Boutons */
@@ -229,6 +246,11 @@ button a {
     color: rgba(255, 255, 255, 1);
     background-color: #0dcaf0;
     border-color: #0dcaf0;
+}
+
+.btn-center {
+    display: block;
+    margin: 20px auto 0 auto;
 }
 
 /* Messages Flash */
@@ -271,6 +293,12 @@ button a {
 }
 
 /* Responsive */
+@media only screen and (min-width: 600px) {
+    .nav-icon {
+        font-size: 2rem;
+    }
+}
+
 @media only screen and (min-width: 768px) {
     nav {
         padding: 0 25px;
@@ -334,7 +362,12 @@ button a {
     }
 
     .container {
-        margin: 125px 200px 100px 200px;
+        margin: 125px 20% 100px 20%;
+    }
+    
+    .login {
+        width: 50%;
+        margin: 30px auto 30px auto;
     }
 }
 
