@@ -1,0 +1,36 @@
+{% extends 'base-escape.html.twig' %}
+
+{% block title %}Escape Game{% endblock %}
+
+{% block body %}
+    <h1 class="fs-3 shadow-escape-title">Vite, ça va exploser !!!</h1>
+
+    <section>
+        <div class="question">
+            <p>En quelle année Christophe Colomb a découvert l'Amérique ?</p>
+        </div>
+
+        <div class="falseAnswer d-none" id="thirdDivFailSubmit">
+            <p id="thirdParaFailSubmit"></p>
+        </div>
+
+        <div class="goodAnswer d-none" id="thirdDivGoodSubmit">
+            <p>Bonne réponse, l'Amérique a été découverte le 12 octobre 1492</p>
+        </div>
+
+        <form name="thirdFormEscape" class="mb-1rem">
+
+            <div id="thirdFormEscape" class="form-escape">
+                <input type="text" id="thirdInputEscape" name="thirdInputEscape" placeholder="Votre date">
+
+                <button type="submit" id="thirdFormSendEscape" class="btn btn-primary">
+                    <i class='fas fa-arrow-right' id="thirdTestSubmitEscape"></i>
+                    <i class="far fa-times-circle d-none" id="thirdFailSubmitEscape"></i>
+                    <i class="fa-solid fa-check d-none" id="thirdSuccessSubmitEscape"></i>
+                </button>
+
+                <button class="btn btn-info" id="thirdSolutionEscape"><i class="fa-solid fa-circle-info"></i></button>
+            </div>
+        </form>
+    </section>    
+{% endblock %}

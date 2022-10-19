@@ -1,0 +1,67 @@
+{% extends 'base-escape.html.twig' %}
+
+{% block title %}Escape Game{% endblock %}
+
+{% block body %}
+    <h1 class="fs-3 shadow-escape-title">Jouons a un petit jeu</h1>
+
+    <section>
+        <div class="question">
+            <p>De quelle couleur est le cheval blanc d'Henry IV ?</p>
+        </div>
+
+        <div class="falseAnswer d-none" id="firstDivFailSubmit">
+            <p id="firstParaFailSubmit"></p>
+        </div>
+
+        <div class="goodAnswer d-none" id="firstDivGoodSubmit">
+            <p>Bonne réponse, c'était bien blanc, tout était écrit dans la question</p>
+        </div>
+
+        <form name="firstFormEscape" class="mb-1rem">
+
+            <div id="firstFormEscape" class="form-escape">
+                <input type="text" id="firstInputEscape" name="firstInputEscape" placeholder="Votre mot">
+
+                <button type="submit" id="firstFormSendEscape" class="btn btn-primary">
+                    <i class='fas fa-arrow-right' id="firstTestSubmitEscape"></i>
+                    <i class="far fa-times-circle d-none" id="firstFailSubmitEscape"></i>
+                    <i class="fa-solid fa-check d-none" id="firstSuccessSubmitEscape"></i>
+                </button>
+
+                <button class="btn btn-info" id="firstSolutionEscape"><i class="fa-solid fa-circle-info"></i></button>
+            </div>
+        </form>
+    </section>
+    
+    <section>
+        <div class="question">
+            <p>Quelle est le numéro manquant : 0 / 1 / 1 / 2 / 3 / 5 / ? / 13 / 21 / 34 / 55</p>
+        </div>
+
+        <div class="falseAnswer d-none" id="secondDivFailSubmit">
+            <p id="secondParaFailSubmit"></p>
+        </div>
+
+        <div class="goodAnswer d-none" id="secondDivGoodSubmit">
+            <p>Bonne réponse, c'était bien 8, il faut additioner les deux nombres précédents à chaques fois</p>
+        </div>
+
+        <form name="secondFormEscape" class="mb-1rem">
+
+            <div id="secondFormEscape" class="form-escape">
+                <input type="text" id="secondInputEscape" name="secondInputEscape" placeholder="Votre chiffre/nombre">
+
+                <button type="submit" id="secondFormSendEscape" class="btn btn-primary">
+                    <i class='fas fa-arrow-right' id="secondTestSubmitEscape"></i>
+                    <i class="far fa-times-circle d-none" id="secondFailSubmitEscape"></i>
+                    <i class="fa-solid fa-check d-none" id="secondSuccessSubmitEscape"></i>
+                </button>
+
+                <button class="btn btn-info" id="secondSolutionEscape"><i class="fa-solid fa-circle-info"></i></button>
+            </div>
+        </form>
+    </section>
+
+    <button class="btn-success d-none next-escape" id="next"><a href="{{ path('app_escape_game_suite') }}">La suite</a></button>
+{% endblock %}
