@@ -22,7 +22,7 @@ h1 {
 }
 
 /* Nabar */
-nav {
+#nav-main {
     position: fixed;
     top: 0;
     width: 100%;
@@ -32,6 +32,7 @@ nav {
     box-shadow: inset 0px -1px 0px rgba(0, 0, 0, 0.5);
     display: grid;
     grid-template-columns: 40% 20% 40%;
+    height: 5rem;
 }
 
 .nav-icon {
@@ -247,6 +248,14 @@ button a {
     color: rgba(0, 0, 0, 1)
 }
 
+.mt-1rem {
+    margin-top: 1rem;
+}
+
+.mt-2rem {
+    margin-top: 2rem;
+}
+
 .mb-1rem {
     margin-bottom: 1rem;
 }
@@ -393,6 +402,51 @@ button a {
     color: white;
 }
 
+/* Films */
+#nav-films {
+    padding: unset;
+    margin-top: 5rem;
+}
+
+#nav-films a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color:rgba(255, 255, 255, 1);
+    background: rgba(109, 114, 185, 1);
+    height: 50px;
+    text-decoration: none;
+    box-shadow: inset 0px -1px 0px rgb(0 0 0 / 15%);
+}
+
+#nav-films a:hover {
+    background-color: rgba(80, 72, 129, 1);
+}
+
+#nav-films ul {
+    display: flex;
+}
+
+#nav-films ul li {
+    position: relative;
+    width: 100%;
+}
+
+#nav-films li:hover .ul-category-films > li {
+    top: 0;
+    display: block;
+}
+
+.ul-category-films li {
+    display: none;
+}
+
+.ul-category-films {
+    flex-direction: column;
+    position: absolute;
+    width: 100%;
+}
+
 /* Boutons */
 .btn {
     padding: 5px 10px;
@@ -491,7 +545,7 @@ button a {
 }
 
 @media only screen and (min-width: 768px) {
-    nav {
+    #nav-main {
         padding: 0 25px;
     }
 
@@ -538,7 +592,7 @@ button a {
 }
 
 @media only screen and (min-width: 992px) {
-    nav {
+    #nav-main {
         padding: 0 50px;
     }
 
@@ -552,7 +606,7 @@ button a {
 }
 
 @media only screen and (min-width: 1200px) {
-    nav {
+    #nav-main {
         padding: 0 150px;
     }
 

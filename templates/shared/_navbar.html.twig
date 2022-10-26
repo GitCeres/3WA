@@ -1,4 +1,4 @@
-<nav>
+<nav id="nav-main">
     <div class="main-navlinks">
         <button class="hamburger" type="button">
             <span></span>
@@ -15,7 +15,7 @@
                     <a href="{{ path('app_escape_game') }}">Escape Game</a>
                 </li>
                 <li>
-                    <a href="#">Encore une autre</a>
+                    <a href="{{ path('app_films') }}">Films</a>
                 </li>
                 <li>
                     <a href="#">Encore</a>
@@ -33,7 +33,7 @@
     <a href="{{ path('homepage') }}" class="nav-icon">Le Récap</a>
 
     <div class="nav-authentication">
-        <a href="#" class="login-mobile">
+        <a href="{{ path('app_login') }}" class="login-mobile">
             <i class="fa-solid fa-user"></i>
         </a>
 
