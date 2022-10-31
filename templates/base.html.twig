@@ -16,9 +16,11 @@
         {% include "shared/_navbar.html.twig" %}
 		{% if app.request.attributes.get('_route') starts with 'app_films' %}
 			{% include "shared/_navbar_films.html.twig" %}
+			<div class="container-films">
+		{% else %}
+			<div class="container">
 		{% endif %}
 		
-		<div class="container">
 			{% for rubrique, messages in app.flashes %}
 				<div class="alert alert-{{ rubrique }}">
 					{% for message in messages %}

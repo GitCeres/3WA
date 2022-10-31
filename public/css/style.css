@@ -229,6 +229,12 @@ footer {
     margin: 100px;
 }
 
+.container-films {
+    height: 100%;
+    padding: 0;
+    margin: 50px 100px 100px 100px;
+}
+
 .container-footer {
     padding: 0;
     margin: 0 100px;
@@ -447,6 +453,34 @@ button a {
     width: 100%;
 }
 
+/* Ajout de film */
+#film {
+    margin-bottom: 10px;
+}
+
+#film div input,
+#film div select,
+#film div textarea {
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: 1px solid rgba(190, 190, 190, 1);
+    margin-bottom: 15px;
+    margin-top: 5px;
+}
+
+#film div input,
+#film div textarea {
+    width: 100%;
+}
+
+#film div select {
+    display: block;
+}
+
+#film li {
+    color: red;
+}
+
 /* Boutons */
 .btn {
     padding: 5px 10px;
@@ -542,6 +576,12 @@ button a {
     .footer-col {
         margin-bottom: unset;
     }
+
+    #film {
+        display: grid;
+        grid-template-columns: 45% 45%;
+        grid-gap: 0 10%;
+    }
 }
 
 @media only screen and (min-width: 768px) {
@@ -612,6 +652,10 @@ button a {
 
     .container {
         margin: 125px 20% 100px 20%;
+    }
+
+    .container-films {
+        margin: 50px 20% 100px 20%;
     }
     
     .login {
