@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Catégories
+{% endblock %}
+
+{% block body %}
+    {% if films | length > 0 %}
+        <h1 class="mb-3rem">Catégorie : {{ category.name }}
+        </h1>
+    {% else %}
+        <h1 class="mb-3rem">La catégorie {{ category.name }} est actuellement vide</h1>
+    {% endif %}
+    
+
+    <div class="card-grid-2">
+        {% for film in films %}
+            {% include "films/_films_card.html.twig" %}
+        {% endfor %}
+    </div>
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ film.title }}
+{% endblock %}
+
+{% block body %}
+    <div class="show mt-3rem">
+        <div class="show-image">
+            <img src="{{ vich_uploader_asset(film) }}" alt="{{ film.title }}">
+        </div>
+        <div class="show-content">
+	        <h1 class="mb-1rem">{{ film.title }}</h1>
+            <h3 class="mb-1rem">Catégorie : {{ film.category.name }}</h3>
+
+            <p class="mb-1rem">{{ film.synopsis }}</p>
+
+            <div class="show-footer">
+                <p>Réalisateur : {{ film.director }}</p>
+                <p>Ajouté le : {{ film.createdAt|date('d/m/Y') }}</p>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -2,7 +2,9 @@
 
 namespace App\Form;
 
+use App\Entity\Category;
 use App\Entity\Film;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Vich\UploaderBundle\Form\Type\VichImageType;
@@ -27,16 +29,6 @@ class FilmType extends AbstractType
                 ]
             )
             ->add(
-                'synopsis',
-                TextareaType::class,
-                [
-                    'label' => 'Synopsis du film',
-                    'attr' => [
-                        'placeholder' => 'Saisissez le synopsis du film'
-                    ]
-                ]
-            )
-            ->add(
                 'director',
                 TextType::class,
                 [
@@ -47,24 +39,33 @@ class FilmType extends AbstractType
                 ]
             )
             ->add(
-                'category',
-                ChoiceType::class,
-                [
-                    'choices' => [
-                        'Action' => Film::ACTION,
-                        'Science Fiction' => Film::SF,
-                        'Fantastique' => Film::FANTASTIQUE,
-                        'Horreur' => Film::HORREUR,
-                        'Comédie' => Film::COMEDIE,
-                    ],
-                    'label' => 'Catégorie du film'
-                ]
-            )
-            ->add(
                 'imageFile',
                 VichImageType::class,
                 [
                     'label' => "Sélectionnez l'affiche du film"
+                ]
+            )
+            ->add(
+                'category',
+                EntityType::class,
+                [
+                    'class' => Category::class,
+                    'choice_label' => 'name',
+                    'label' => "Catégorie du film",
+                    'attr' => [
+                        'placeholder' => 'Saisissez le nom du réalisateur du film'
+                    ]
+                ]
+            )
+            ->add(
+                'synopsis',
+                TextareaType::class,
+                [
+                    'label' => 'Synopsis du film',
+                    'attr' => [
+                        'placeholder' => 'Saisissez le synopsis du film',
+                        'rows' => 10
+                    ]
                 ]
             )
         ;

@@ -1,0 +1,27 @@
+<div class="card-film mb-3rem">
+    <div class="card-title p-1rem mb-1rem">
+        <h2>{{ film.title }}</h2>
+    </div>
+
+    <div class="card-image mb-1rem px-1rem">
+        <img src="{{ vich_uploader_asset(film) }}" alt="{{ film.title }}">
+    </div>
+
+    <div class="card-category">
+        <h3 class="mb-1rem px-1rem">{{ film.category.name }}</h3>
+    </div>
+
+    <div class="card-synopsis px-1rem mb-1rem">
+        <p>{{ film.synopsis | u.truncate(150, '...') }}</p>
+    </div>
+
+    <div class="card-button pr-1rem mb-1rem">
+        <a href="{{ path('app_films_show', {'slug' : film.slug }) }}" class="btn btn-primary">
+            Plus de détails
+        </a>
+    </div>
+
+    <div class="card-footer p-1rem">
+        <p>Ajouté le : {{ film.createdAt|date('d/m/Y') }}</p>
+    </div>
+</div>

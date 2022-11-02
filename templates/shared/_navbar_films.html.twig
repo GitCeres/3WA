@@ -1,16 +1,18 @@
 <nav id="nav-films">
     <ul>
         <li><a href="{{ path('app_films') }}">Accueil</a></li>
-        <li><a href="#">Tous les films</a></li>
+        <li><a href="{{ path('app_films_all') }}">Tous les films</a></li>
         <li>
             <a href="#">Catégories</a>
             <ul class="ul-category-films">
-                <li><a href="#">Catégorie 1</a></li>
-                <li><a href="#">Catégorie 2</a></li>
-                <li><a href="#">Catégorie 3</a></li>
-                <li><a href="#">Catégorie 4</a></li>
+                {% for category in categoryRepository.findAll() %}
+					<li class="nav-item">
+						<a href="{{ path('app_films_category_show', {'slug' : category.slug}) }}">{{ category.name }}</a>
+					</li>
+				{% endfor %}
             </ul>
         </li>
         <li><a href="{{ path('app_films_create') }}">Ajouter un film</a></li>
+        <li><a href="{{ path('app_films_category_create') }}">Ajouter une catégorie</a></li>
     </ul>
 </nav>

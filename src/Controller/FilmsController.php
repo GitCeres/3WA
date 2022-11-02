@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Film;
 use App\Form\FilmType;
+use App\Repository\FilmRepository;
 use DateTimeImmutable;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -17,9 +18,13 @@ class FilmsController extends AbstractController
     /**
      * @Route("/films", name="app_films")
      */
-    public function index(): Response
+    public function index(FilmRepository $filmRepository): Response
     {
-        return $this->render('films/index.html.twig');
+        $films = $filmRepository->findBy([], ['createdAt' => 'DESC'], 3);
+
+        return $this->render('films/index.html.twig', [
+            'films' => $films
+        ]);
     }
 
     /**
@@ -43,11 +48,37 @@ class FilmsController extends AbstractController
             $entityManagerInterface->persist($film);
             $entityManagerInterface->flush();
 
-            return $this->redirectToRoute('homepage');
+            return $this->redirectToRoute('app_films');
         }
 
         return $this->render('films/create.html.twig', [
             'form' => $form->createView()
+        ]);
+    }
+
+    /**
+     * @Route("/films/show/{slug}", name="app_films_show")
+     */
+    public function show($slug, FilmRepository $filmRepository)
+    {
+        $film = $filmRepository->findOneBy([
+            'slug' => $slug
+        ]);
+
+        return $this->render('films/show.html.twig', [
+            'film' => $film
+        ]);
+    }
+
+    /**
+     * @Route("/films/all", name="app_films_all")
+     */
+    public function allMovies(FilmRepository $filmRepository)
+    {
+        $films = $filmRepository->findBy([], ['createdAt' => 'DESC']);
+
+        return $this->render('films/all.html.twig', [
+            'films' => $films
         ]);
     }
 }

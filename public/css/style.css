@@ -23,6 +23,7 @@ h1 {
 
 /* Nabar */
 #nav-main {
+    z-index: 1;
     position: fixed;
     top: 0;
     width: 100%;
@@ -191,6 +192,10 @@ footer {
     margin-bottom: 20px;
 }
 
+.footer-col ul {
+    width: 100%;
+}
+
 .logo-networks {
     justify-content: center;
 }
@@ -224,15 +229,15 @@ footer {
 }
 
 .container {
-    height: 100%;
+    flex-grow: 1;
     padding: 0;
     margin: 100px;
 }
 
 .container-films {
-    height: 100%;
     padding: 0;
-    margin: 50px 100px 100px 100px;
+    flex-grow: 1;
+    margin: 150px 10% 100px 10%;
 }
 
 .container-footer {
@@ -262,6 +267,10 @@ button a {
     margin-top: 2rem;
 }
 
+.mt-3rem {
+    margin-top: 3rem;
+}
+
 .mb-1rem {
     margin-bottom: 1rem;
 }
@@ -278,6 +287,15 @@ button a {
     margin-bottom: 5rem;
 }
 
+.my-1rem {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.p-1rem {
+    padding: 1rem;
+}
+
 .pt-3rem {
     padding-top: 3rem;
 }
@@ -288,6 +306,15 @@ button a {
 
 .pb-2rem {
     padding-bottom: 2rem;
+}
+
+.pr-1rem {
+    padding-right: 1rem;
+}
+
+.px-1rem {
+    padding-left: 1rem;
+    padding-right: 1rem;
 }
 
 .d-none {
@@ -410,6 +437,8 @@ button a {
 
 /* Films */
 #nav-films {
+    position: fixed;
+    width: 100%;
     padding: unset;
     margin-top: 5rem;
 }
@@ -453,7 +482,78 @@ button a {
     width: 100%;
 }
 
-/* Ajout de film */
+/* Carte des films */
+.card-film {
+    border-radius: 5px;
+    border: 1px solid rgba(190, 190, 190, 1);
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+}
+
+.card-title {
+    background: rgba(240, 240, 240, 1);
+    display: flex;
+    justify-content: center;
+    box-shadow: inset 0px -1px 0px rgba(190, 190, 190, 0.5);
+}
+
+.card-image {
+    display: flex;
+    justify-content: center;
+}
+
+.card-image img {
+    max-width: 100%;
+    object-fit: cover;
+    max-height: 300px;
+}
+
+.card-button {
+    justify-content: end;
+    display: flex;
+}
+
+.card-button a {
+    text-decoration: none;
+}
+
+.card-footer {
+    background: rgba(240, 240, 240, 1);
+    display: flex;
+    justify-content: end;
+    box-shadow: inset 0px 1px 0px rgba(190, 190, 190, 0.5);
+}
+
+/* Page d'un film */
+.show {
+    display: grid;
+    grid-template-columns: 60% 35%;
+    grid-gap: 0 5%;
+}
+
+.show-image img {
+    width: 100%;
+    object-fit: contain;
+    max-height: 500px;
+}
+
+.show-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.show-content h1 {
+    text-align: unset;
+}
+
+.show-footer {
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+}
+
+/* Ajout de film / catégorie */
 #film {
     margin-bottom: 10px;
 }
@@ -481,6 +581,25 @@ button a {
     color: red;
 }
 
+/* Ajout d'une catégorie */
+#category {
+    margin-bottom: 10px;
+}
+
+#category > div {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+#category div input {
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: 1px solid rgba(190, 190, 190, 1);
+    margin-bottom: 15px;
+    margin-top: 5px;
+}
+
 /* Boutons */
 .btn {
     padding: 5px 10px;
@@ -492,30 +611,35 @@ button a {
     color: rgba(255, 255, 255, 1);
     background-color: #0d6efd;
     border-color: #0d6efd;
+    cursor: pointer;
 }
 
 .btn-success {
     color: rgba(255, 255, 255, 1);
     background-color: rgba(25, 135, 84, 1);
     border-color: rgba(25, 135, 84, 1);
+    cursor: pointer;
 }
 
 .btn-danger {
     color: rgba(255, 255, 255, 1);
     background-color: rgba(220, 53, 69, 1);
     border-color: rgba(220, 53, 69, 1);
+    cursor: pointer;
 }
 
 .btn-warning {
     color: rgba(255, 255, 255, 1);
     background-color: #ffc107;
     border-color: #ffc107;
+    cursor: pointer;
 }
 
 .btn-info {
     color: rgba(255, 255, 255, 1);
     background-color: #0dcaf0;
     border-color: #0dcaf0;
+    cursor: pointer;
 }
 
 .btn-center {
@@ -577,7 +701,9 @@ button a {
         margin-bottom: unset;
     }
 
-    #film {
+    #film,
+    .card-grid-2,
+    .card-grid-3 {
         display: grid;
         grid-template-columns: 45% 45%;
         grid-gap: 0 10%;
@@ -643,6 +769,12 @@ button a {
     .footer-link {
         grid-template-columns: 25% 25% 25% 25%;
     }
+
+    .card-grid-3 {
+        display: grid;
+        grid-template-columns: 30% 30% 30%;
+        grid-gap: 0 5%;
+    }
 }
 
 @media only screen and (min-width: 1200px) {
@@ -655,7 +787,7 @@ button a {
     }
 
     .container-films {
-        margin: 50px 20% 100px 20%;
+        margin: 150px 10% 100px 10%;
     }
     
     .login {

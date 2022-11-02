@@ -1,17 +1,14 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Accueil Films
+{% block title %}Tous les films
 {% endblock %}
 
 {% block body %}
-	<h1 class="mb-3rem">Bienvenue sur la partie Films</h1>
+	<h1 class="mb-3rem">Liste de tous les films</h1>
 
-	<h2 class="mb-1rem">Nos 3 derniers ajouts</h2>
-
-	<div class="card-grid-3">
+    <div class="card-grid-2">
         {% for film in films %}
             {% include "films/_films_card.html.twig" %}
         {% endfor %}
     </div>
-
 {% endblock %}

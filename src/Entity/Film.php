@@ -51,11 +51,6 @@ class Film
      */
     private $createdAt;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $category;
-
      /**
      * @Vich\UploadableField(mapping="film_image", fileNameProperty="image")
      */
@@ -70,6 +65,12 @@ class Film
      * @ORM\Column(type="datetime_immutable")
      */
     private $updatedAt;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="films")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $category;
 
     public function getId(): ?int
     {
@@ -136,18 +137,6 @@ class Film
         return $this;
     }
 
-    public function getCategory(): ?string
-    {
-        return $this->category;
-    }
-
-    public function setCategory(string $category): self
-    {
-        $this->category = $category;
-
-        return $this;
-    }
-
     /**
      * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile|null $imageFile
      */
@@ -185,6 +174,18 @@ class Film
     public function setUpdatedAt(\DateTimeImmutable $updatedAt)
     {
         $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    public function getCategory(): ?Category
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?Category $category): self
+    {
+        $this->category = $category;
 
         return $this;
     }
