@@ -1,0 +1,12 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Ajout d'une catégorie
+{% endblock %}
+
+{% block body %}
+	<h1 class="mb-3rem">Toutes les catégories</h1>
+
+    {% for category in categories %}
+        <a href="{{ path('app_films_category_show', {'slug' : category.slug}) }}" class="btn btn-info">{{ category.name }}</a>
+    {% endfor %}
+{% endblock %}

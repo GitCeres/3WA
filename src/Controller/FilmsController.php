@@ -3,8 +3,11 @@
 namespace App\Controller;
 
 use App\Entity\Film;
+use App\Entity\Stars;
 use App\Form\FilmType;
+use App\Form\StarsType;
 use App\Repository\FilmRepository;
+use App\Repository\StarsRepository;
 use DateTimeImmutable;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -59,14 +62,51 @@ class FilmsController extends AbstractController
     /**
      * @Route("/films/show/{slug}", name="app_films_show")
      */
-    public function show($slug, FilmRepository $filmRepository)
+    public function show($slug, FilmRepository $filmRepository, StarsRepository $starsRepository, Request $request, EntityManagerInterface $entityManagerInterface)
     {
+        
+
         $film = $filmRepository->findOneBy([
             'slug' => $slug
         ]);
 
+        $notes = $starsRepository->findBy(['film' => $film]);
+
+        $stars = new Stars();
+        
+        $form = $this->createForm(StarsType::class, $stars);
+
+        $form->handleRequest($request);
+
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            
+            $stars->setUser($this->getUser());
+
+            $stars->setFilm(($film));
+
+            $existingStars = $starsRepository->findOneBy([
+                'user' => $this->getUser(),
+                'film' => $film,
+            ]);
+
+            if (!$existingStars) {
+                $entityManagerInterface->persist($stars);
+            } else {
+                $existingStars->setNumber($form->getData()->getNumber());
+            }
+
+            $entityManagerInterface->flush();
+
+            return $this->redirectToRoute('app_films_show', [
+                'slug' => $film->getSlug()
+            ]);
+        }
+
         return $this->render('films/show.html.twig', [
-            'film' => $film
+            'film' => $film,
+            'notes' => $notes,
+            'form' => $form->createView(),
         ]);
     }
 

@@ -22,11 +22,21 @@ class CategoryController extends AbstractController
     {
         $category = $categoryRepository->findOneBy(['slug' => $slug]);
 
-        $films = $filmRepository->findBy(['category' => $category]);
+        $films = $filmRepository->findBy(['category' => $category], ['createdAt' => 'DESC']);
 
         return $this->render('category/show.html.twig', [
             'category' => $category,
             'films' => $films,
+        ]);
+    }
+
+    /**
+     * @Route("/films/category/all", name="app_films_category_all")
+     */
+    public function all(CategoryRepository $categoryRepository): Response
+    {
+        return $this->render('category/all.html.twig', [
+            'categories' => $categoryRepository->findAll(),
         ]);
     }
 
@@ -53,6 +63,13 @@ class CategoryController extends AbstractController
 
         return $this->render('category/create.html.twig', [
             'form' => $form->createView()
+        ]);
+    }
+
+    public function renderListCategory(CategoryRepository $categoryRepository): Response
+    {
+        return $this->render('category/_menu_category.html.twig', [
+            'categories' => $categoryRepository->findAll(),
         ]);
     }
 }

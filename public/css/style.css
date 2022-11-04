@@ -40,7 +40,6 @@ h1 {
     display: flex;
     align-items: center;
     justify-content: center;
-    text-decoration: none;
     font-family: 'Dancing Script', sans-serif;
     font-size: 1.5rem;
     color: rgba(60, 60, 60, 1);
@@ -113,7 +112,6 @@ h1 {
 
 .navlinks-container a {
     font-size: 1rem;
-    text-decoration: none;
     color: rgba(60, 60, 60, 1);
     position: relative;
 }
@@ -144,7 +142,6 @@ h1 {
 }
 
 .login-mobile {
-    text-decoration: none;
     color: rgba(60, 60, 60, 1);
 }
 
@@ -168,7 +165,6 @@ footer {
 }
 
 .title-footer {
-    text-decoration: none;
     margin-bottom: 2rem;
     padding-top: 2rem;
     font-weight: 500;
@@ -178,7 +174,6 @@ footer {
 }
 
 .footer-link a {
-    text-decoration: none;
     margin-right: 15px;
 }
 
@@ -254,7 +249,8 @@ ul {
     justify-content: center;
 }
 
-button a {
+button a,
+a {
     text-decoration: none;
     color: rgba(0, 0, 0, 1)
 }
@@ -292,6 +288,14 @@ button a {
     margin-bottom: 1rem;
 }
 
+.ml-1rem {
+    margin-left: 1rem;
+}
+
+.mr-auto {
+    margin-right: auto;
+}
+
 .p-1rem {
     padding: 1rem;
 }
@@ -306,6 +310,10 @@ button a {
 
 .pb-2rem {
     padding-bottom: 2rem;
+}
+
+.pl-1rem {
+    padding-left: 1rem;
 }
 
 .pr-1rem {
@@ -450,7 +458,6 @@ button a {
     color:rgba(255, 255, 255, 1);
     background: rgba(109, 114, 185, 1);
     height: 50px;
-    text-decoration: none;
     box-shadow: inset 0px -1px 0px rgb(0 0 0 / 15%);
 }
 
@@ -484,7 +491,7 @@ button a {
 
 /* Carte des films */
 .card-film {
-    border-radius: 5px;
+    border-radius: 15px;
     border: 1px solid rgba(190, 190, 190, 1);
     display: grid;
     grid-template-rows: auto 1fr auto;
@@ -495,6 +502,7 @@ button a {
     display: flex;
     justify-content: center;
     box-shadow: inset 0px -1px 0px rgba(190, 190, 190, 0.5);
+    border-radius: 15px 15px 0 0;
 }
 
 .card-image {
@@ -506,6 +514,7 @@ button a {
     max-width: 100%;
     object-fit: cover;
     max-height: 300px;
+    border-radius: 15px;
 }
 
 .card-button {
@@ -513,38 +522,48 @@ button a {
     display: flex;
 }
 
-.card-button a {
-    text-decoration: none;
-}
-
 .card-footer {
     background: rgba(240, 240, 240, 1);
     display: flex;
     justify-content: end;
+    border-radius: 0 0 15px 15px;
     box-shadow: inset 0px 1px 0px rgba(190, 190, 190, 0.5);
 }
 
 /* Page d'un film */
-.show {
-    display: grid;
-    grid-template-columns: 60% 35%;
-    grid-gap: 0 5%;
-}
-
 .show-image img {
     width: 100%;
     object-fit: contain;
     max-height: 500px;
+    border-radius: 15px;
 }
 
 .show-content {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    background: rgba(240, 240, 240, 1);
+    border-radius: 15px;
+    padding: 1rem;
+    align-self: self-start;
 }
 
 .show-content h1 {
     text-align: unset;
+}
+
+.rate p {
+    margin-bottom: 5px;
+}
+
+.star-icon {
+    background: rgb(251,238,64);
+    background: radial-gradient(circle, rgba(251,238,64,1) 0%, rgba(251,205,64,1) 90%, rgba(0,0,0,1) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+#stars > div > label {
+    display: flex;
 }
 
 .show-footer {
@@ -774,6 +793,13 @@ button a {
         display: grid;
         grid-template-columns: 30% 30% 30%;
         grid-gap: 0 5%;
+    }
+
+    .show {
+        display: grid;
+        grid-template-columns: 60% 35%;
+        grid-gap: 0 5%;
+        margin-top: 1rem;
     }
 }
 

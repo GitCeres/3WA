@@ -7,8 +7,8 @@
         <img src="{{ vich_uploader_asset(film) }}" alt="{{ film.title }}">
     </div>
 
-    <div class="card-category">
-        <h3 class="mb-1rem px-1rem">{{ film.category.name }}</h3>
+    <div class="card-category mb-1rem">
+        <a href="{{ path('app_films_category_show', {'slug' : film.category.slug}) }}" class="btn btn-info ml-1rem">{{ film.category.name }}</a>
     </div>
 
     <div class="card-synopsis px-1rem mb-1rem">

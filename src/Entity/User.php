@@ -2,7 +2,10 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\UserRepository;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
@@ -57,6 +60,16 @@ class User implements UserInterface
      * @ORM\Column(type="string", length=255)
      */
     private $gender;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Stars::class, mappedBy="user")
+     */
+    private $stars;
+
+    public function __construct()
+    {
+        $this->stars = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -185,5 +198,35 @@ class User implements UserInterface
         $fullName = $this->getFirstName() . ' ' . $this->getLastName();
 
         return $fullName;
+    }
+
+    /**
+     * @return Collection<int, Stars>
+     */
+    public function getStars(): Collection
+    {
+        return $this->stars;
+    }
+
+    public function addStar(Stars $star): self
+    {
+        if (!$this->stars->contains($star)) {
+            $this->stars[] = $star;
+            $star->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeStar(Stars $star): self
+    {
+        if ($this->stars->removeElement($star)) {
+            // set the owning side to null (unless already changed)
+            if ($star->getUser() === $this) {
+                $star->setUser(null);
+            }
+        }
+
+        return $this;
     }
 }

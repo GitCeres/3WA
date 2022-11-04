@@ -4,13 +4,35 @@
 {% endblock %}
 
 {% block body %}
-    <div class="show mt-3rem">
+    <div class="show">
         <div class="show-image">
-            <img src="{{ vich_uploader_asset(film) }}" alt="{{ film.title }}">
+            <img src="{{ vich_uploader_asset(film) }}" alt="{{ film.title }}" class="mb-1rem">
         </div>
         <div class="show-content">
-	        <h1 class="mb-1rem">{{ film.title }}</h1>
-            <h3 class="mb-1rem">Catégorie : {{ film.category.name }}</h3>
+	        <h1 class="mb-1rem center">{{ film.title }}</h1>
+
+            <a href="{{ path('app_films_category_show', {'slug' : film.category.slug}) }}" class="btn btn-info mr-auto mb-1rem">{{ film.category.name }}</a>
+
+            <div class="rate">
+                <p>
+                    {{ film.average }}/5
+                    <i class="fa-solid fa-star star-icon"></i>
+                </p>
+
+                {% if app.user %}
+                    
+                    {{ form_start(form) }}
+
+                    {{ form_widget(form) }}
+
+                    <button type="submit" class="btn btn-primary mb-1rem">
+                        <i class="fas fa-save"></i>
+                        Valider la note
+                    </button>
+
+                    {{ form_end(form) }}
+                {% endif %}
+            </div>
 
             <p class="mb-1rem">{{ film.synopsis }}</p>
 
@@ -19,5 +41,9 @@
                 <p>Ajouté le : {{ film.createdAt|date('d/m/Y') }}</p>
             </div>
         </div>
+
+        
+            
     </div>
+
 {% endblock %}

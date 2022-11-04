@@ -1,0 +1,8 @@
+<a href="{{ path('app_films_category_all') }}">Catégories</a>
+<ul class="ul-category-films">
+    {% for category in categories %}
+        <li class="nav-item">
+            <a href="{{ path('app_films_category_show', {'slug' : category.slug}) }}">{{ category.name }}</a>
+        </li>
+    {% endfor %}
+</ul>

@@ -3,14 +3,7 @@
         <li><a href="{{ path('app_films') }}">Accueil</a></li>
         <li><a href="{{ path('app_films_all') }}">Tous les films</a></li>
         <li>
-            <a href="#">Catégories</a>
-            <ul class="ul-category-films">
-                {% for category in categoryRepository.findAll() %}
-					<li class="nav-item">
-						<a href="{{ path('app_films_category_show', {'slug' : category.slug}) }}">{{ category.name }}</a>
-					</li>
-				{% endfor %}
-            </ul>
+            {{ render(controller('App\\Controller\\CategoryController::renderListCategory')) }}
         </li>
         <li><a href="{{ path('app_films_create') }}">Ajouter un film</a></li>
         <li><a href="{{ path('app_films_category_create') }}">Ajouter une catégorie</a></li>

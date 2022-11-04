@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\FilmRepository;
 use Symfony\Component\HttpFoundation\File\File;
@@ -71,6 +73,18 @@ class Film
      * @ORM\JoinColumn(nullable=false)
      */
     private $category;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Stars::class, mappedBy="film")
+     */
+    private $stars;
+
+    private $average;
+
+    public function __construct()
+    {
+        $this->stars = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -188,5 +202,54 @@ class Film
         $this->category = $category;
 
         return $this;
+    }
+
+    /**
+     * @return Collection<int, Stars>
+     */
+    public function getStars(): Collection
+    {
+        return $this->stars;
+    }
+
+    public function addStar(Stars $star): self
+    {
+        if (!$this->stars->contains($star)) {
+            $this->stars[] = $star;
+            $star->setFilm($this);
+        }
+
+        return $this;
+    }
+
+    public function removeStar(Stars $star): self
+    {
+        if ($this->stars->removeElement($star)) {
+            // set the owning side to null (unless already changed)
+            if ($star->getFilm() === $this) {
+                $star->setFilm(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getAverage()
+    {
+        $stars = $this->stars;
+
+        if ($stars->toArray() === []) {
+            $this->average = null;
+            return $this->average;
+        }
+
+        $total = 0;
+        foreach ($stars as $star) {
+            $total += $star->getNumber();
+        }
+
+        $this->average = round($total / count($stars), 1);
+
+        return $this->average;
     }
 }
