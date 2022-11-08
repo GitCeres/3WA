@@ -4,7 +4,7 @@
 {% endblock %}
 
 {% block body %}
-    <div class="show">
+    <div class="show mb-3rem">
         <div class="show-image">
             <img src="{{ vich_uploader_asset(film) }}" alt="{{ film.title }}" class="mb-1rem">
         </div>
@@ -21,16 +21,16 @@
 
                 {% if app.user %}
                     
-                    {{ form_start(form) }}
+                    {{ form_start(formStars) }}
 
-                    {{ form_widget(form) }}
+                    {{ form_widget(formStars) }}
 
                     <button type="submit" class="btn btn-primary mb-1rem">
                         <i class="fas fa-save"></i>
                         Valider la note
                     </button>
 
-                    {{ form_end(form) }}
+                    {{ form_end(formStars) }}
                 {% endif %}
             </div>
 
@@ -41,9 +41,33 @@
                 <p>Ajouté le : {{ film.createdAt|date('d/m/Y') }}</p>
             </div>
         </div>
+    </div>
 
-        
+    <div class="comment">
+        {% for comment in comments %}
+            <div class="card-comment mb-2rem">
+                <div class="card-comment-title p-1rem">
+                    <p>{{ comment.user.fullName }} le {{ comment.createdAt|date('d/m/Y') }}</p>
+                </div>
+
+                <div class="card-comment-content p-1rem">
+                    <p>{{ comment.content }}</p>
+                </div>
+            </div>
+        {% endfor %}
+        {% if app.user %}
             
+            {{ form_start(formComment) }}
+
+            {{ form_widget(formComment) }}
+
+            <button type="submit" class="btn btn-primary mb-1rem">
+                <i class="fas fa-save"></i>
+                Ajouter le commentaire
+            </button>
+
+            {{ form_end(formComment) }}
+        {% endif %}
     </div>
 
 {% endblock %}

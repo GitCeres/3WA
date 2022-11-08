@@ -453,6 +453,7 @@ a {
 }
 
 #nav-films a {
+    text-align: center;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -532,6 +533,10 @@ a {
 }
 
 /* Page d'un film */
+.show {
+    margin-bottom: 3rem;
+}
+
 .show-image img {
     width: 100%;
     object-fit: contain;
@@ -573,16 +578,29 @@ a {
     align-items: end;
 }
 
-/* Ajout de film / catégorie */
+.card-comment {
+    border-radius: 15px;
+    border: 1px solid rgba(190, 190, 190, 1);
+}
+
+.card-comment-title {
+    background: rgba(240, 240, 240, 1);
+    box-shadow: inset 0px -1px 0px rgba(190, 190, 190, 0.5);
+    border-radius: 15px 15px 0 0;
+}
+
+/* Ajout de film / catégorie / commentaires */
 #film,
-#category {
+#category,
+#comment {
     margin-bottom: 10px;
 }
 
 #film div input,
 #film div select,
 #film div textarea,
-#category div input {
+#category div input,
+#comment div textarea {
     padding: 5px 10px;
     border-radius: 5px;
     border: 1px solid rgba(190, 190, 190, 1);
@@ -591,7 +609,8 @@ a {
 }
 
 #film div input,
-#film div textarea {
+#film div textarea,
+#comment div textarea {
     width: 100%;
 }
 

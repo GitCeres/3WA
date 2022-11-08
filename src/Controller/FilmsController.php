@@ -5,16 +5,19 @@ namespace App\Controller;
 use App\Entity\Film;
 use App\Entity\Stars;
 use App\Form\FilmType;
+use DateTimeImmutable;
+use App\Entity\Comment;
+use App\Form\CommentType;
 use App\Form\StarsType;
 use App\Repository\FilmRepository;
 use App\Repository\StarsRepository;
-use DateTimeImmutable;
+use App\Repository\CommentRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\String\Slugger\SluggerInterface;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class FilmsController extends AbstractController
 {
@@ -62,28 +65,25 @@ class FilmsController extends AbstractController
     /**
      * @Route("/films/show/{slug}", name="app_films_show")
      */
-    public function show($slug, FilmRepository $filmRepository, StarsRepository $starsRepository, Request $request, EntityManagerInterface $entityManagerInterface): Response
+    public function show($slug, FilmRepository $filmRepository, StarsRepository $starsRepository, CommentRepository $commentRepository, Request $request, EntityManagerInterface $entityManagerInterface): Response
     {
-        
-
         $film = $filmRepository->findOneBy([
             'slug' => $slug
         ]);
 
-        $notes = $starsRepository->findBy(['film' => $film]);
+        $comments = $commentRepository->findBy(['film' => $film]);
 
         $stars = new Stars();
         
-        $form = $this->createForm(StarsType::class, $stars);
+        $formStars = $this->createForm(StarsType::class, $stars);
 
-        $form->handleRequest($request);
+        $formStars->handleRequest($request);
 
+        if ($formStars->isSubmitted() && $formStars->isValid()) {
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            
             $stars->setUser($this->getUser());
 
-            $stars->setFilm(($film));
+            $stars->setFilm($film);
 
             $existingStars = $starsRepository->findOneBy([
                 'user' => $this->getUser(),
@@ -93,7 +93,7 @@ class FilmsController extends AbstractController
             if (!$existingStars) {
                 $entityManagerInterface->persist($stars);
             } else {
-                $existingStars->setNumber($form->getData()->getNumber());
+                $existingStars->setNumber($formStars->getData()->getNumber());
             }
 
             $entityManagerInterface->flush();
@@ -103,10 +103,34 @@ class FilmsController extends AbstractController
             ]);
         }
 
+        $comment = new Comment();
+
+        $formComment = $this->createForm(CommentType::class, $comment);
+
+        $formComment->handleRequest($request);
+
+        if ($formComment->isSubmitted() && $formComment->isValid()) {
+            
+            $comment->setUser($this->getUser());
+
+            $comment->setFilm($film);
+
+            $date = new DateTimeImmutable();
+            $comment->setCreatedAt($date);
+
+            $entityManagerInterface->persist($comment);
+            $entityManagerInterface->flush();
+
+            return $this->redirectToRoute('app_films_show', [
+                'slug' => $film->getSlug()
+            ]);
+        }
+
         return $this->render('films/show.html.twig', [
             'film' => $film,
-            'notes' => $notes,
-            'form' => $form->createView(),
+            'comments' => $comments,
+            'formStars' => $formStars->createView(),
+            'formComment' => $formComment->createView(),
         ]);
     }
 

@@ -85,12 +85,17 @@ class Film
      * @ORM\OneToMany(targetEntity=Stars::class, mappedBy="film")
      */
     private $stars;
+    /**
+     * @ORM\OneToMany(targetEntity=Comment::class, mappedBy="film")
+     */
+    private $comment;
 
     private $average;
 
     public function __construct()
     {
         $this->stars = new ArrayCollection();
+        $this->comment = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -258,5 +263,35 @@ class Film
         $this->average = round($total / count($stars), 1);
 
         return $this->average;
+    }
+
+    /**
+     * @return Collection<int, Comment>
+     */
+    public function getComment(): Collection
+    {
+        return $this->comment;
+    }
+
+    public function addComment(Comment $comment): self
+    {
+        if (!$this->comment->contains($comment)) {
+            $this->comment[] = $comment;
+            $comment->setFilm($this);
+        }
+
+        return $this;
+    }
+
+    public function removeComment(Comment $comment): self
+    {
+        if ($this->comment->removeElement($comment)) {
+            // set the owning side to null (unless already changed)
+            if ($comment->getFilm() === $this) {
+                $comment->setFilm(null);
+            }
+        }
+
+        return $this;
     }
 }
