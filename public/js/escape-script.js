@@ -53,14 +53,14 @@ function getData(e) {
 
 // Vérifie si la réponse est bonne
 function testForm(data, form) {
-    if (form == 'first') {
+    if (form === 'first') {
         let contentLower = data.toLowerCase();
 
         if (!REGEX_STRINGS.test(contentLower)) {
             errorForm(LETTERS, form);
             return;
         }
-    
+
         if (contentLower != FIRST) {
             errorForm(FALSE, form);
             return;
@@ -69,12 +69,12 @@ function testForm(data, form) {
         firstGood = true;
         validForm(form);
 
-    } else if (form == 'second') {
+    } else if (form === 'second') {
         if (!REGEX_NUMBERS.test(data)) {
             errorForm(NUMBERS, form);
             return;
         }
-    
+
         if (data != SECOND) {
             errorForm(FALSE, form);
             return;
@@ -82,12 +82,12 @@ function testForm(data, form) {
 
         secondGood = true;
         validForm(form);
-    } else if (form == 'third') {
+    } else if (form === 'third') {
         if (!REGEX_NUMBERS.test(data)) {
             errorForm(NUMBERS, form);
             return;
         }
-    
+
         if (data != THIRD) {
             errorForm(FALSE, form);
             return;
@@ -106,10 +106,10 @@ function validForm(form) {
     document.getElementById(form + "SuccessSubmitEscape").classList.toggle("d-none");
     document.getElementById(form + "DivGoodSubmit").classList.toggle("d-none");
 
-    if (form == 'third') {
+    if (form === 'third') {
         return;
     }
-    
+
     testAllGood();
 }
 
@@ -123,7 +123,7 @@ function errorForm(error, form) {
     document.getElementById(form + "DivFailSubmit").classList.toggle("d-none");
     document.getElementById(form + "ParaFailSubmit").innerHTML = error;
 
-    setTimeout(function(){
+    setTimeout(function () {
         document.getElementById(form + "FailSubmitEscape").classList.toggle("d-none");
         document.getElementById(form + "TestSubmitEscape").classList.toggle("d-none");
         document.getElementById(form + "FormSendEscape").classList.remove("btn-danger");
@@ -146,14 +146,14 @@ function testAllGood() {
 }
 
 // Affiche la solution de l'énigme
-function solution(number){
-    if (number == "first") {
+function solution(number) {
+    if (number === "first") {
         alert('La réponse est "blanc"');
-    } else if (number == "second") {
+    } else if (number === "second") {
         alert('La réponse est "8"');
-    } else if (number == "third") {
+    } else if (number === "third") {
         alert('La réponse est "1492"');
-    } 
+    }
 }
 
 if (FIRST_FORM_ESCAPE) {
@@ -165,5 +165,5 @@ if (FIRST_FORM_ESCAPE) {
     document.body.style.background = "url(/images/escape-suite.jpg) no-repeat center";
     document.body.style.backgroundSize = "cover";
     THIRD_FORM_ESCAPE.addEventListener("submit", getData);
-    THIRD_SOLUTION.addEventListener("click", solution.bind(null, "third"));    
+    THIRD_SOLUTION.addEventListener("click", solution.bind(null, "third"));
 }

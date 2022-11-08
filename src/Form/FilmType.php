@@ -42,7 +42,7 @@ class FilmType extends AbstractType
                 'imageFile',
                 VichImageType::class,
                 [
-                    'label' => "Sélectionnez l'affiche du film"
+                    'label' => "Sélectionnez l'affiche du film",
                 ]
             )
             ->add(

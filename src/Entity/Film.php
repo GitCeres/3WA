@@ -8,10 +8,16 @@ use Doctrine\ORM\Mapping as ORM;
 use App\Repository\FilmRepository;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass=FilmRepository::class)
  * @Vich\Uploadable
+ * @UniqueEntity(
+ *     fields={"title"},
+ *     message="Le film {{ value }} existe déjà"
+ * )
  */
 class Film
 {
@@ -55,6 +61,7 @@ class Film
 
      /**
      * @Vich\UploadableField(mapping="film_image", fileNameProperty="image")
+     * @Assert\File(uploadIniSizeErrorMessage="L'image ne doit pas dépasser {{ limit }}{{ suffix }}")
      */
     private $imageFile;
 

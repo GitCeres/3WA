@@ -62,7 +62,7 @@ class FilmsController extends AbstractController
     /**
      * @Route("/films/show/{slug}", name="app_films_show")
      */
-    public function show($slug, FilmRepository $filmRepository, StarsRepository $starsRepository, Request $request, EntityManagerInterface $entityManagerInterface)
+    public function show($slug, FilmRepository $filmRepository, StarsRepository $starsRepository, Request $request, EntityManagerInterface $entityManagerInterface): Response
     {
         
 
@@ -113,7 +113,7 @@ class FilmsController extends AbstractController
     /**
      * @Route("/films/all", name="app_films_all")
      */
-    public function allMovies(FilmRepository $filmRepository)
+    public function allMovies(FilmRepository $filmRepository): Response
     {
         $films = $filmRepository->findBy([], ['createdAt' => 'DESC']);
 

@@ -8,7 +8,8 @@
     padding: 0;
 }
 
-html, body {
+html,
+body {
     height: 100%;
 }
 
@@ -455,7 +456,7 @@ a {
     display: flex;
     align-items: center;
     justify-content: center;
-    color:rgba(255, 255, 255, 1);
+    color: rgba(255, 255, 255, 1);
     background: rgba(109, 114, 185, 1);
     height: 50px;
     box-shadow: inset 0px -1px 0px rgb(0 0 0 / 15%);
@@ -474,7 +475,7 @@ a {
     width: 100%;
 }
 
-#nav-films li:hover .ul-category-films > li {
+#nav-films li:hover .ul-category-films>li {
     top: 0;
     display: block;
 }
@@ -556,13 +557,13 @@ a {
 }
 
 .star-icon {
-    background: rgb(251,238,64);
-    background: radial-gradient(circle, rgba(251,238,64,1) 0%, rgba(251,205,64,1) 90%, rgba(0,0,0,1) 100%);
+    background: rgb(251, 238, 64);
+    background: radial-gradient(circle, rgba(251, 238, 64, 1) 0%, rgba(251, 205, 64, 1) 90%, rgba(0, 0, 0, 1) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
-#stars > div > label {
+#stars>div>label {
     display: flex;
 }
 
@@ -573,13 +574,15 @@ a {
 }
 
 /* Ajout de film / catégorie */
-#film {
+#film,
+#category {
     margin-bottom: 10px;
 }
 
 #film div input,
 #film div select,
-#film div textarea {
+#film div textarea,
+#category div input {
     padding: 5px 10px;
     border-radius: 5px;
     border: 1px solid rgba(190, 190, 190, 1);
@@ -596,27 +599,15 @@ a {
     display: block;
 }
 
-#film li {
+#film li,
+#category li {
     color: red;
 }
 
-/* Ajout d'une catégorie */
-#category {
-    margin-bottom: 10px;
-}
-
-#category > div {
+#category div {
     display: flex;
     align-items: center;
     flex-direction: column;
-}
-
-#category div input {
-    padding: 5px 10px;
-    border-radius: 5px;
-    border: 1px solid rgba(190, 190, 190, 1);
-    margin-bottom: 15px;
-    margin-top: 5px;
 }
 
 /* Boutons */
@@ -815,7 +806,7 @@ a {
     .container-films {
         margin: 150px 10% 100px 10%;
     }
-    
+
     .login {
         width: 50%;
         margin: 30px auto 30px auto;
