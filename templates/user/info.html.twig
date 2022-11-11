@@ -1,0 +1,24 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Données personnelles
+{% endblock %}
+
+{% block body %}
+	<h1 class="mb-3rem">Vos données personnelles</h1>
+
+    <div class="account">
+		{% include "user/_aside_account.html.twig" %}
+        <div class="account-info">
+            {{ form_start(form) }}
+
+			{{ form_widget(form) }}
+
+			<button type="submit" class="btn btn-primary btn-center">
+                <i class="fas fa-save"></i>
+                Mettre à jour
+            </button>
+
+			{{ form_end(form) }}
+        </div>
+	</div>
+{% endblock %}

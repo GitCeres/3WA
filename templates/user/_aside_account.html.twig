@@ -1,0 +1,8 @@
+<div class="account-aside">
+    <a href="{{ path('app_account') }}">Mon compte</a>
+    <a href="{{ path('app_user_info', {'name' : user.firstName }) }}">Données personnelles</a>
+    <a href="{{ path('app_user_password', {'name' : user.firstName }) }}">Mot de passe</a>
+    <a href="{{ path('app_user_comments', {'name' : user.firstName }) }}">Commentaires</a>
+    <a href="{{ path('app_user_stars', {'name' : user.firstName }) }}">Notes</a>
+    <a href="#">Suppression du compte</a>
+</div>

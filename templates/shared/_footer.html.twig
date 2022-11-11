@@ -24,13 +24,20 @@
                 </ul>
             </div>
             <div class="footer-col flex-direct-col">
-                <h3>Sujet 3</h3>
+                <h3>Compte</h3>
 
                 <ul>
-                    <li>Texte 9</li>
-                    <li>Texte 10</li>
-                    <li>Texte 11</li>
-                    <li>Texte 12</li>
+                    {% if app.user %}
+                        <li><a href="{{ path('app_account') }}">Mon compte</a></li>
+                        <li><a href="{{ path('app_user_info', {'name' : app.user.firstName }) }}">Données personnelles</a></li>
+                        <li><a href="{{ path('app_user_password', {'name' : app.user.firstName }) }}">Mot de passe</a></li>
+                        <li><a href="{{ path('app_user_comments', {'name' : app.user.firstName }) }}">Commentaires</a></li>
+                        <li><a href="{{ path('app_user_stars', {'name' : app.user.firstName }) }}">Notes</a></li>
+                    {% else %}
+                        <li><a href="{{ path('app_login') }}">S'identifier</a></li>
+                        <li><a href="{{ path('app_register') }}">S'enregistrer</a></li>
+                    {% endif %}
+                    
                 </ul>
             </div>
             <div class="footer-col logo-networks">

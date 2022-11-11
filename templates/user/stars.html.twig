@@ -1,0 +1,26 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Notes
+{% endblock %}
+
+{% block body %}
+	<h1 class="mb-3rem">Vos notes</h1>
+
+    <div class="account">
+		{% include "user/_aside_account.html.twig" %}
+        <div class="account-star">
+            {% for star in user.stars %}
+                <h3 class="account-star-title">
+                    <a href="{{ path('app_films_show', {'slug' : star.film.slug }) }}">
+                        Film : {{ star.film.title }} {{ star.film.average }}/5
+                        <i class="fa-solid fa-star star-icon"></i>
+                    </a>
+                </h3>
+                <p class="mb-1rem">
+                    Votre note : {{ star.number }}/5
+                    <i class="fa-solid fa-star star-icon"></i>
+                </p>
+            {% endfor %}
+        </div>
+	</div>
+{% endblock %}

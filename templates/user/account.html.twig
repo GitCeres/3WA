@@ -1,0 +1,42 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Votre compte
+{% endblock %}
+
+{% block body %}
+    <h1 class="mb-3rem">Votre compte {{ user.firstName }}</h1>
+
+	<div class="account">
+		{% include "user/_aside_account.html.twig" %}
+        <div class="account-content">
+            <div class="card-account">
+                <a href="{{ path('app_user_info', {'name' : user.firstName }) }}">
+                    <h3>Données personnelles</h3>
+                    <p>Vous pouvez changer vos données personnelles (e-mail, nom, prénom...)</p>
+                </a>
+            </div>
+
+            <div class="card-account">
+                <a href="{{ path('app_user_password', {'name' : user.firstName }) }}">
+                    <h3>Mot de passe</h3>
+                    <p>Vous pouvez changer votre mot de passe</p>
+                </a>
+            </div>
+
+            <div class="card-account">
+                <a href="{{ path('app_user_comments', {'name' : user.firstName }) }}">
+                    <h3>Commentaires</h3>
+                    <p>Vous pouvez voir et supprimer vos commentaires</p>
+                </a>
+            </div>
+
+            <div class="card-account">
+                <a href="{{ path('app_user_stars', {'name' : user.firstName }) }}">
+                    <h3>Notes</h3>
+                    <p>Vous pouvez voir les notes que vous avez mis aux films</p>
+                </a>
+            </div>
+        </div>
+	</div>
+
+{% endblock %}

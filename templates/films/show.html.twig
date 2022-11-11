@@ -14,10 +14,25 @@
             <a href="{{ path('app_films_category_show', {'slug' : film.category.slug}) }}" class="btn btn-info mr-auto mb-1rem">{{ film.category.name }}</a>
 
             <div class="rate">
-                <p>
-                    {{ film.average }}/5
-                    <i class="fa-solid fa-star star-icon"></i>
-                </p>
+                <div class="display-rate">
+                    {% if film.average == null %}
+                        <p>Pas de notes</p>
+                    {% else %}
+                        <p>
+                            Moyenne {{ film.average }}/5
+                            <i class="fa-solid fa-star star-icon"></i>
+                        </p>
+                    {% endif %}
+
+                    {% for star in app.user.stars %}
+                        {% if star.film.title == film.title %}
+                            <p>
+                                Votre note {{ star.number }}/5
+                                <i class="fa-solid fa-star star-icon"></i>
+                            </p>
+                        {% endif %}
+                    {% endfor %} 
+                </div>
 
                 {% if app.user %}
                     
@@ -45,16 +60,9 @@
 
     <div class="comment">
         {% for comment in comments %}
-            <div class="card-comment mb-2rem">
-                <div class="card-comment-title p-1rem">
-                    <p>{{ comment.user.fullName }} le {{ comment.createdAt|date('d/m/Y') }}</p>
-                </div>
-
-                <div class="card-comment-content p-1rem">
-                    <p>{{ comment.content }}</p>
-                </div>
-            </div>
+            {% include "films/_comment_card.html.twig" %}
         {% endfor %}
+
         {% if app.user %}
             
             {{ form_start(formComment) }}

@@ -1,0 +1,17 @@
+<div class="card-comment mb-2rem">
+    <div class="card-comment-title p-1rem">
+        <p>{{ comment.user.fullName }} le {{ comment.createdAt|date('d/m/Y') }}</p>
+        {% if comment.user == app.user %}
+            {% if app.request.attributes.get('_route') starts with 'app_films' %}
+                <a href="{{ path('app_films_delete_comment', {'id' : comment.id}) }}" class="btn-delete btn-danger">x</a>
+            {% elseif app.request.attributes.get('_route') starts with 'app_user' %}
+                <a href="{{ path('app_user_delete_comment', {'id' : comment.id, 'name' : user.firstName}) }}" class="btn-delete btn-danger">x</a>
+            {% endif %}
+        {% endif %}
+    </div>
+
+    <div class="card-comment-content p-1rem">
+        <p>{{ comment.content }}</p>
+    </div>
+
+</div>

@@ -68,7 +68,7 @@ class FilmsController extends AbstractController
     public function show($slug, FilmRepository $filmRepository, StarsRepository $starsRepository, CommentRepository $commentRepository, Request $request, EntityManagerInterface $entityManagerInterface): Response
     {
         $film = $filmRepository->findOneBy([
-            'slug' => $slug
+            'slug' => $slug,
         ]);
 
         $comments = $commentRepository->findBy(['film' => $film]);
@@ -143,6 +143,23 @@ class FilmsController extends AbstractController
 
         return $this->render('films/all.html.twig', [
             'films' => $films
+        ]);
+    }
+
+    /**
+     * @Route("/films/delete/comment/{id}", name="app_films_delete_comment")
+     */
+    public function deleteComment(Comment $comment, EntityManagerInterface $entityManagerInterface)
+    {    
+        $filmSlug = $comment->getFilm()->getSlug();
+    
+        $entityManagerInterface->remove($comment);
+        $entityManagerInterface->flush();
+    
+        $this->addFlash("success", "Votre commentaire a bien été supprimé");
+    
+        return $this->redirectToRoute('app_films_show', [
+            'slug' => $filmSlug,
         ]);
     }
 }

@@ -30,7 +30,7 @@ class LoginType extends AbstractType
                     'attr' => [
                         'placeholder' => 'Saisissez votre mot de passe'
                     ],
-                    'invalid_message' => 'Les mots de passe doivent correspondre'
+                    'invalid_message' => 'Mot de passe invalide'
                 ]
             )
         ;

@@ -1,0 +1,18 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Commentaires
+{% endblock %}
+
+{% block body %}
+	<h1 class="mb-3rem">Vos commentaires</h1>
+
+    <div class="account">
+		{% include "user/_aside_account.html.twig" %}
+        <div class="account-comment">
+            {% for comment in user.comment %}
+                <h3 class="account-comment-title">Film : <a href="{{ path('app_films_show', {'slug' : comment.film.slug }) }}">{{ comment.film.title }}</a></h3>
+                {% include "films/_comment_card.html.twig" %}
+            {% endfor %}
+        </div>
+	</div>
+{% endblock %}
