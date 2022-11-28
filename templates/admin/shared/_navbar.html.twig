@@ -1,0 +1,8 @@
+<nav class="nav-admin">
+    <a href="{{ path('homepage') }}" class="btn-sign">Retour au site</a>
+    <a href="{{ path('app_admin') }}">Accueil administrateur</a>
+    <div class="sign-btn">
+        <p>{{ app.user.fullName }}</p>
+        <a href="{{ path('app_logout') }}" class="btn-sign">Déconnexion</a>
+    </div>
+</nav>

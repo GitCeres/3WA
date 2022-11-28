@@ -1,0 +1,40 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Gestion des catégories{% endblock %}
+
+{% block body %}
+	<h1>Gestion des catégories</h1>
+
+    <div class="back-office">
+		{% include "admin/shared/_aside.html.twig" %}
+        <div class="back-office-category">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nom</th>
+                        <th>Nombre de films</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for category in categories %}
+                        <tr>
+                            <td>{{ category.name }}</td>
+                            <td>{{ category.films | length }}</td>
+                            <td class="action-btn">
+                                <a href="{{ path('app_admin_category_show', { 'slug' : category.slug }) }}" class="btn btn-info">
+                                    <i class="fas fa-eye"></i>
+                                </a>
+                                <a href="{{ path('app_admin_category_edit', { 'slug' : category.slug }) }}" class="btn btn-warning">
+                                    <i class="fas fa-pen"></i>
+                                </a>
+                                <a href="{{ path('app_admin_category_delete', { 'slug' : category.slug }) }}" class="btn btn-danger">
+                                    <i class="fas fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+	</div>
+{% endblock %}

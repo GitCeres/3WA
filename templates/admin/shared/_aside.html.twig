@@ -1,0 +1,7 @@
+<div class="back-office-aside">
+    <a href="{{ path('app_admin') }}" class="{% if app.request.get('_route') == 'app_admin' %}active{% endif %}">Accueil Administrateur</a>
+    <a href="{{ path('app_admin_users') }}" class="{% if app.request.get('_route') == 'app_admin_users' %}active{% endif %}">Utilisateurs</a>
+    <a href="{{ path('app_admin_category') }}" class="{% if app.request.get('_route') == 'app_admin_category' %}active{% endif %}">Catégories</a>
+    <a href="{{ path('app_admin_films') }}" class="{% if app.request.get('_route') == 'app_admin_films' %}active{% endif %}">Films</a>
+    <a href="{{ path('app_admin_comments') }}" class="{% if app.request.get('_route') == 'app_admin_comments' %}active{% endif %}">Commentaires</a>
+</div>

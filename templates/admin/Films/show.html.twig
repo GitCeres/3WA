@@ -1,0 +1,49 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Film {{ film.title }}{% endblock %}
+
+{% block body %}
+	<h1>Film {{ film.title }}</h1>
+
+    <div class="back-office">
+		{% include "admin/shared/_aside.html.twig" %}
+        <div class="back-office-film-show">
+            <div class="show">
+                <div class="show-image">
+                    <img src="{{ vich_uploader_asset(film) }}" alt="{{ film.title }}" class="mb-1rem">
+                </div>
+                <div class="show-content">
+                    <h1 class="mb-1rem center">{{ film.title }}</h1>
+
+                    <a href="{{ path('app_films_category_show', {'slug' : film.category.slug}) }}" class="btn btn-info mr-auto mb-1rem">{{ film.category.name }}</a>
+
+                    <div class="rate">
+                        <div class="display-rate">
+                            {% if film.average == null %}
+                                <p>Pas de notes</p>
+                            {% else %}
+                                <p>
+                                    Moyenne {{ film.average }}/5
+                                    <i class="fa-solid fa-star star-icon"></i>
+                                </p>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    <p class="mb-1rem mt-1rem">{{ film.synopsis }}</p>
+
+                    <div class="show-footer">
+                        <p>Réalisateur : {{ film.director }}</p>
+                        <p>Ajouté le : {{ film.createdAt|date('d/m/Y') }}</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="comment">
+                {% for comment in comments %}
+                    {% include "films/_comment_card.html.twig" %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

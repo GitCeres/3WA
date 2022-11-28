@@ -790,33 +790,33 @@ a {
 }
 
 .alert-primary {
-    color: #084298;
-    background-color: #cfe2ff;
-    border-color: #b6d4fe;
+    color: rgba(8, 66, 152, 1);
+    background-color: rgba(207, 226, 255, 1);
+    border-color: rgba(182, 212, 254, 1);
 }
 
 .alert-success {
-    color: #0f5132;
-    background-color: #d1e7dd;
-    border-color: #badbcc;
+    color: rgba(15, 81, 50, 1);
+    background-color: rgba(209, 231, 221, 1);
+    border-color: rgba(186, 219, 204, 1);
 }
 
 .alert-danger {
-    color: #842029;
-    background-color: #f8d7da;
-    border-color: #f5c2c7;
+    color: rgba(132, 32, 41, 1);
+    background-color: rgba(248, 215, 218, 1);
+    border-color: rgba(245, 194, 199, 1);
 }
 
 .alert-warning {
-    color: #664d03;
-    background-color: #fff3cd;
-    border-color: #ffecb5;
+    color: rgba(102, 77, 3, 1);
+    background-color: rgba(255, 243, 205, 1);
+    border-color: rgba(255, 236, 181, 1);
 }
 
 .alert-info {
-    color: #055160;
-    background-color: #cff4fc;
-    border-color: #b6effb;
+    color: rgba(5, 81, 96, 1);
+    background-color: rgba(207, 244, 252, 1);
+    border-color: rgba(182, 239, 251, 1);
 }
 
 /* Responsive */

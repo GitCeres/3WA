@@ -1,0 +1,50 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Gestion des utilisateurs{% endblock %}
+
+{% block body %}
+	<h1>Gestion des utilisateurs</h1>
+
+    <div class="back-office">
+		{% include "admin/shared/_aside.html.twig" %}
+        <div class="back-office-users">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nom</th>
+                        <th>Prénom</th>
+                        <th>Email</th>
+                        <th>Rôle</th>
+                        <th>Genre</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for user in users %}
+                        <tr>
+                            <td>{{ user.lastName }}</td>
+                            <td>{{ user.firstName }}</td>
+                            <td>{{ user.email }}</td>
+                            <td>
+                                {% for role in user.roles %}
+                                    {{ role }}
+                                {% endfor %}
+                            </td>
+                            <td>{{ user.gender }}</td>
+                            <td class="action-btn">
+                                <a href="{{ path('app_admin_user_show', { 'id' : user.id }) }}" class="btn btn-info">
+                                    <i class="fas fa-eye"></i>
+                                </a>
+                                <a href="{{ path('app_admin_user_edit', { 'id' : user.id }) }}" class="btn btn-warning">
+                                    <i class="fas fa-pen"></i>
+                                </a>
+                                <a href="{{ path('app_admin_user_delete', { 'id' : user.id }) }}" class="btn btn-danger">
+                                    <i class="fas fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+	</div>
+{% endblock %}

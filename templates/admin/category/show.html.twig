@@ -1,0 +1,22 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Catégorie {{ category.name }}{% endblock %}
+
+{% block body %}
+	<h1>Catégorie {{ category.name }}</h1>
+
+    <div class="back-office">
+		{% include "admin/shared/_aside.html.twig" %}
+        <div class="back-office-category-show">
+            {% if films | length == 0 %}
+                <h2>La catégorie {{ category.name }} est actuellement vide</h2>
+            {% endif %}
+        
+            <div class="card-grid-2">
+                {% for film in films %}
+                    {% include "films/_films_card.html.twig" %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

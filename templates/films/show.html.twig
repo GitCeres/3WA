@@ -24,23 +24,24 @@
                         </p>
                     {% endif %}
 
-                    {% for star in app.user.stars %}
-                        {% if star.film.title == film.title %}
-                            <p>
-                                Votre note {{ star.number }}/5
-                                <i class="fa-solid fa-star star-icon"></i>
-                            </p>
-                        {% endif %}
-                    {% endfor %} 
+                    {% if app.user %}
+                        {% for star in app.user.stars %}
+                            {% if star.film.title == film.title %}
+                                <p>
+                                    Votre note {{ star.number }}/5
+                                    <i class="fa-solid fa-star star-icon"></i>
+                                </p>
+                            {% endif %}
+                        {% endfor %} 
+                    {% endif %}
                 </div>
 
                 {% if app.user %}
-                    
                     {{ form_start(formStars) }}
 
                     {{ form_widget(formStars) }}
 
-                    <button type="submit" class="btn btn-primary mb-1rem">
+                    <button type="submit" class="btn btn-primary">
                         <i class="fas fa-save"></i>
                         Valider la note
                     </button>
@@ -49,7 +50,7 @@
                 {% endif %}
             </div>
 
-            <p class="mb-1rem">{{ film.synopsis }}</p>
+            <p class="mb-1rem mt-1rem">{{ film.synopsis }}</p>
 
             <div class="show-footer">
                 <p>Réalisateur : {{ film.director }}</p>

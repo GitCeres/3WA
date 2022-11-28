@@ -71,7 +71,11 @@ class FilmsController extends AbstractController
             'slug' => $slug,
         ]);
 
-        $comments = $commentRepository->findBy(['film' => $film]);
+        $comments = $commentRepository->findBy([
+            'film' => $film,
+        ], [
+            'createdAt' => 'DESC'
+        ]);
 
         $stars = new Stars();
         

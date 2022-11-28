@@ -62,12 +62,12 @@ class User implements UserInterface
     private $gender;
 
     /**
-     * @ORM\OneToMany(targetEntity=Stars::class, mappedBy="user")
+     * @ORM\OneToMany(targetEntity=Stars::class, mappedBy="user", orphanRemoval=true)
      */
     private $stars;
 
     /**
-     * @ORM\OneToMany(targetEntity=Comment::class, mappedBy="user")
+     * @ORM\OneToMany(targetEntity=Comment::class, mappedBy="user", orphanRemoval=true)
      */
     private $comment;
 

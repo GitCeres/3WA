@@ -82,11 +82,11 @@ class Film
     private $category;
 
     /**
-     * @ORM\OneToMany(targetEntity=Stars::class, mappedBy="film")
+     * @ORM\OneToMany(targetEntity=Stars::class, mappedBy="film", orphanRemoval=true)
      */
     private $stars;
     /**
-     * @ORM\OneToMany(targetEntity=Comment::class, mappedBy="film")
+     * @ORM\OneToMany(targetEntity=Comment::class, mappedBy="film", orphanRemoval=true)
      */
     private $comment;
 
@@ -185,7 +185,7 @@ class Film
         return $this->image;
     }
 
-    public function setImage(string $image): self
+    public function setImage(?string $image): self
     {
         $this->image = $image;
 

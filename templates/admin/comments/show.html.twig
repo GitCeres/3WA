@@ -1,0 +1,15 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Commentaire de {{ comment.user.fullName }}{% endblock %}
+
+{% block body %}
+	<h1>Commentaire de {{ comment.user.fullName }}</h1>
+
+    <div class="back-office">
+		{% include "admin/shared/_aside.html.twig" %}
+        <div class="back-office-comment-show">
+            <h3 class="mb-1rem">Film {{ comment.film.title }}</h3>
+            {% include "films/_comment_card.html.twig" %}
+        </div>
+    </div>
+{% endblock %}

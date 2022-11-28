@@ -36,7 +36,7 @@ class Category
     private $slug;
 
     /**
-     * @ORM\OneToMany(targetEntity=Film::class, mappedBy="category")
+     * @ORM\OneToMany(targetEntity=Film::class, mappedBy="category", orphanRemoval=true)
      */
     private $films;
 

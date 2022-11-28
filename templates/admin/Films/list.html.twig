@@ -1,0 +1,54 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Gestion des films{% endblock %}
+
+{% block body %}
+	<h1>Gestion des films</h1>
+
+    <div class="back-office">
+		{% include "admin/shared/_aside.html.twig" %}
+        <div class="back-office-films">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Titre</th>
+                        <th>Catégorie</th>
+                        <th>Réalisateur</th>
+                        <th>Synopsis</th>
+                        <th>Date d'ajout</th>
+                        <th>Note</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for film in films %}
+                        <tr>
+                            <td>{{ film.title }}</td>
+                            <td>{{ film.category.name }}</td>
+                            <td>{{ film.director }}</td>
+                            <td>{{ film.synopsis | u.truncate(50, '...') }}</td>
+                            <td>{{ film.createdAt | date('d/m/Y') }}</td>
+                            <td>
+                                {% if film.average == null %}
+                                    Aucunes
+                                {% else %}
+                                    {{ film.average }} <i class="fa-solid fa-star star-icon"></i>
+                                {% endif %}                                    
+                            </td>
+                            <td class="action-btn">
+                                <a href="{{ path('app_admin_film_show', { 'slug' : film.slug }) }}" class="btn btn-info">
+                                    <i class="fas fa-eye"></i>
+                                </a>
+                                <a href="{{ path('app_admin_film_edit', { 'slug' : film.slug }) }}" class="btn btn-warning">
+                                    <i class="fas fa-pen"></i>
+                                </a>
+                                <a href="{{ path('app_admin_film_delete', { 'slug' : film.slug }) }}" class="btn btn-danger">
+                                    <i class="fas fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+	</div>
+{% endblock %}
