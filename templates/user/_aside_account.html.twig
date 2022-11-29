@@ -4,6 +4,6 @@
     <a href="{{ path('app_user_password', {'name' : user.firstName }) }}" class="{% if app.request.get('_route') == 'app_user_password' %}active{% endif %}">Mot de passe</a>
     <a href="{{ path('app_user_comments', {'name' : user.firstName }) }}" class="{% if app.request.get('_route') == 'app_user_comments' %}active{% endif %}">Commentaires</a>
     <a href="{{ path('app_user_stars', {'name' : user.firstName }) }}" class="{% if app.request.get('_route') == 'app_user_stars' %}active{% endif %}">Notes</a>
-    <a href="#">Suppression du compte</a>
+    <a href="{{ path('app_user_delete', {'name' : user.firstName }) }}" class="{% if app.request.get('_route') == 'app_user_delete' %}active{% endif %}">Suppression du compte</a>
     <a href="{{ path('app_logout') }}">Se déconnecter</a>
 </div>

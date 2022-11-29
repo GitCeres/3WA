@@ -1,0 +1,20 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Suppression du compte {{ user.fullName }}
+{% endblock %}
+
+{% block body %}
+	<h1 class="mb-3rem">Suppression du compte {{ user.fullName }}</h1>
+
+    <div class="account">
+		{% include "user/_aside_account.html.twig" %}
+        <div class="account-delete">
+			<p class="user-delete">Attention, cette action est irréversible</p>
+			<p class="user-delete">Voulez vous vraiment supprimer votre compte ?</p>
+
+            {{ form_start(form) }}
+
+			{{ form_end(form) }}
+        </div>
+	</div>
+{% endblock %}

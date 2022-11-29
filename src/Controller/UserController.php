@@ -8,6 +8,7 @@ use App\Form\RegisterType;
 use App\Form\UserEditInfoType;
 use App\Form\Model\ChangePassword;
 use App\Form\UserEditPasswordType;
+use App\Form\UserDeleteAccountType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -161,6 +162,36 @@ class UserController extends AbstractController
         $user = $this->getUser();
 
         return $this->render('user/stars.html.twig', [
+            'user' => $user,
+        ]);
+    }
+
+    /**
+     * @Route("/account/{name}/delete", name="app_user_delete")
+     */
+    public function deleteAccount(Request $request, EntityManagerInterface $entityManagerInterface): Response
+    {
+        /** @var User */
+        $user = $this->getUser();
+
+        $form = $this->createForm(UserDeleteAccountType::class, $user);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $entityManagerInterface->remove($user);
+            $entityManagerInterface->flush();
+
+            $this->addFlash("success", "Votre compte a bien été supprimé");
+
+            $this->container->get('security.token_storage')->setToken(null);
+
+            return $this->redirectToRoute('homepage');
+        }
+
+        return $this->render('user/delete.html.twig', [
+            'form' => $form->createView(),
             'user' => $user,
         ]);
     }

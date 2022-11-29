@@ -8,16 +8,16 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class AdminDeleteUserType extends AbstractType
+class UserDeleteAccountType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add(
                 'delete',
-                SubmitType::class, 
+                SubmitType::class,
                 [
-                    'label' => 'Supprimer le compte',
+                    'label' => 'Supprimer mon compte',
                     'attr' => [
                         'class' => 'btn btn-danger btn-center'
                     ]
