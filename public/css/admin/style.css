@@ -23,6 +23,10 @@ a {
     color: unset;
 }
 
+li {
+    list-style-type: none;
+}
+
 .container {
     margin: 125px 5% 100px 5%;
 }
@@ -358,6 +362,10 @@ td.action-btn a:nth-last-child(1) {
 #admin_edit_film .vich-image a img {
     max-height: 300px;
     max-width: 400px;
+}
+
+#admin_edit_user li {
+    color: red;
 }
 
 /* Carte des films */

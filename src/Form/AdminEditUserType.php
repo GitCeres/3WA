@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\CallbackTransformer;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -57,7 +58,28 @@ class AdminEditUserType extends AbstractType
                     'label' => 'Genre',
                 ]
             )
+            ->add(
+                'roles',
+                ChoiceType::class,
+                [
+                    'choices' => [
+                        'Utilisateur' => User::ROLE_USER,
+                        'Modérateur' => User::ROLE_MODO,
+                        'Admin' => User::ROLE_ADMIN,
+                    ]
+                ]
+            )
         ;
+
+        $builder->get('roles')
+            ->addModelTransformer(new CallbackTransformer(
+                function ($rolesArray) {
+                     return count($rolesArray)? $rolesArray[0]: null;
+                },
+                function ($rolesString) {
+                     return [$rolesString];
+                }
+        ));
     }
 
     public function configureOptions(OptionsResolver $resolver): void

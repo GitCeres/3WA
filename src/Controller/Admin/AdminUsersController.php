@@ -2,13 +2,14 @@
 
 namespace App\Controller\Admin;
 
-use App\Form\AdminDeleteUserType;
 use App\Form\AdminEditUserType;
+use App\Form\AdminDeleteUserType;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class AdminUsersController extends AbstractController
@@ -43,6 +44,7 @@ class AdminUsersController extends AbstractController
 
     /**
      * @Route("/admin/user/edit/{id}", name="app_admin_user_edit")
+     * @IsGranted("ROLE_ADMIN")
      */
     public function edit($id, UserRepository $userRepository, Request $request, EntityManagerInterface $entityManagerInterface): Response
     {
@@ -71,6 +73,7 @@ class AdminUsersController extends AbstractController
 
     /**
      * @Route("/admin/user/delete/{id}", name="app_admin_user_delete")
+     * @IsGranted("ROLE_ADMIN")
      */
     public function delete($id, UserRepository $userRepository, Request $request, EntityManagerInterface $entityManagerInterface): Response
     {

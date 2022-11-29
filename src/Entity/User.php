@@ -22,6 +22,7 @@ class User implements UserInterface
     const HOMME = 'Homme';
     const AUTRE = 'Autre';
     const ROLE_USER = 'ROLE_USER';
+    const ROLE_MODO = 'ROLE_MODO';
     const ROLE_ADMIN = 'ROLE_ADMIN';
 
     /**

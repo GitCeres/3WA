@@ -23,6 +23,10 @@ h1 {
     text-align: center;
 }
 
+li {
+    list-style-type: none;
+}
+
 /* Nabar */
 #nav-main {
     z-index: 3;

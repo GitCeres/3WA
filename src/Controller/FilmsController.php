@@ -7,8 +7,8 @@ use App\Entity\Stars;
 use App\Form\FilmType;
 use DateTimeImmutable;
 use App\Entity\Comment;
-use App\Form\CommentType;
 use App\Form\StarsType;
+use App\Form\CommentType;
 use App\Repository\FilmRepository;
 use App\Repository\StarsRepository;
 use App\Repository\CommentRepository;
@@ -17,6 +17,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\String\Slugger\SluggerInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class FilmsController extends AbstractController
@@ -35,6 +36,7 @@ class FilmsController extends AbstractController
 
     /**
      * @Route("/films/create", name="app_films_create")
+     * @IsGranted("ROLE_MODO")
      */
     public function create(Request $request, SluggerInterface $slug, EntityManagerInterface $entityManagerInterface): Response
     {

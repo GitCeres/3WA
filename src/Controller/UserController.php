@@ -61,7 +61,7 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/{name}/info", name="app_user_info")
+     * @Route("/account/{name}/info", name="app_user_info")
      */
     public function info(Request $request, EntityManagerInterface $entityManagerInterface): Response
     {
@@ -88,7 +88,7 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/{name}/password", name="app_user_password")
+     * @Route("/account/{name}/password", name="app_user_password")
      */
     public function changePassword(Request $request, EntityManagerInterface $entityManagerInterface, UserPasswordHasherInterface $passwordHasher): Response
     {
@@ -122,7 +122,7 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/{name}/comments", name="app_user_comments")
+     * @Route("/account/{name}/comments", name="app_user_comments")
      */
     public function showComments(): Response
     {
@@ -135,7 +135,7 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/{name}/delete/comment/{id}", name="app_user_delete_comment")
+     * @Route("/account/{name}/delete/comment/{id}", name="app_user_delete_comment")
      */
     public function deleteComment(Comment $comment, EntityManagerInterface $entityManagerInterface): Response
     {
@@ -153,7 +153,7 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/{name}/stars", name="app_user_stars")
+     * @Route("/account/{name}/stars", name="app_user_stars")
      */
     public function showStars(): Response
     {
