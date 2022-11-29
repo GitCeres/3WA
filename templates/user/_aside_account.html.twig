@@ -1,8 +1,9 @@
 <div class="account-aside">
-    <a href="{{ path('app_account') }}">Mon compte</a>
-    <a href="{{ path('app_user_info', {'name' : user.firstName }) }}">Données personnelles</a>
-    <a href="{{ path('app_user_password', {'name' : user.firstName }) }}">Mot de passe</a>
-    <a href="{{ path('app_user_comments', {'name' : user.firstName }) }}">Commentaires</a>
-    <a href="{{ path('app_user_stars', {'name' : user.firstName }) }}">Notes</a>
+    <a href="{{ path('app_account') }}" class="{% if app.request.get('_route') == 'app_account' %}active{% endif %}">Mon compte</a>
+    <a href="{{ path('app_user_info', {'name' : user.firstName }) }}" class="{% if app.request.get('_route') == 'app_user_info' %}active{% endif %}">Données personnelles</a>
+    <a href="{{ path('app_user_password', {'name' : user.firstName }) }}" class="{% if app.request.get('_route') == 'app_user_password' %}active{% endif %}">Mot de passe</a>
+    <a href="{{ path('app_user_comments', {'name' : user.firstName }) }}" class="{% if app.request.get('_route') == 'app_user_comments' %}active{% endif %}">Commentaires</a>
+    <a href="{{ path('app_user_stars', {'name' : user.firstName }) }}" class="{% if app.request.get('_route') == 'app_user_stars' %}active{% endif %}">Notes</a>
     <a href="#">Suppression du compte</a>
+    <a href="{{ path('app_logout') }}">Se déconnecter</a>
 </div>

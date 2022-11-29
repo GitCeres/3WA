@@ -44,7 +44,7 @@ class AdminUsersController extends AbstractController
     /**
      * @Route("/admin/user/edit/{id}", name="app_admin_user_edit")
      */
-    public function edit($id, UserRepository $userRepository, Request $request, EntityManagerInterface $entityManagerInterface)
+    public function edit($id, UserRepository $userRepository, Request $request, EntityManagerInterface $entityManagerInterface): Response
     {
         $user = $userRepository->findOneBy([
             'id' => $id
@@ -72,7 +72,7 @@ class AdminUsersController extends AbstractController
     /**
      * @Route("/admin/user/delete/{id}", name="app_admin_user_delete")
      */
-    public function delete($id, UserRepository $userRepository, Request $request, EntityManagerInterface $entityManagerInterface)
+    public function delete($id, UserRepository $userRepository, Request $request, EntityManagerInterface $entityManagerInterface): Response
     {
         $user = $userRepository->findOneBy([
             'id' => $id

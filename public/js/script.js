@@ -1,6 +1,6 @@
 const hamburgerToggler = document.querySelector(".hamburger");
 const navLinksContainerSlide = document.querySelector(".navlinks-container-slide");
-const shadowBody = document.body;
+const shadowBody = document.getElementById("shadow");
 
 // Affiche ou cache la side bar et le fond sombre au format mobile
 function toggleNav() {

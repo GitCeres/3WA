@@ -28,7 +28,7 @@ a {
 }
 
 .active {
-    background: rgb(89 42 159) !important;
+    background: rgba(89, 42, 159, 1) !important;
     color: rgba(255, 255, 255, 1) !important;
 }
 
@@ -78,6 +78,7 @@ a {
     color: rgba(229, 229, 229, 1);
     justify-content: space-between;
     background: rgba(126, 69, 213, 1);
+    box-shadow: inset 0px -1px 0px rgba(0, 0, 0, 0.5);
     padding: 1rem;
     align-items: center;
     position: fixed;
@@ -485,7 +486,7 @@ td.action-btn a:nth-last-child(1) {
 }
 
 .alert-primary {
-    color: rgba(8, 66, 152, 1);
+    color: rgba(163, 110, 245, 1);
     background-color: rgba(207, 226, 255, 1);
     border-color: rgba(182, 212, 254, 1);
 }

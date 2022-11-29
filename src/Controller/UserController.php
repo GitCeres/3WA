@@ -63,7 +63,7 @@ class UserController extends AbstractController
     /**
      * @Route("/{name}/info", name="app_user_info")
      */
-    public function info(Request $request, EntityManagerInterface $entityManagerInterface)
+    public function info(Request $request, EntityManagerInterface $entityManagerInterface): Response
     {
         /** @var User */
         $user = $this->getUser();
@@ -137,7 +137,7 @@ class UserController extends AbstractController
     /**
      * @Route("/{name}/delete/comment/{id}", name="app_user_delete_comment")
      */
-    public function deleteComment(Comment $comment, EntityManagerInterface $entityManagerInterface)
+    public function deleteComment(Comment $comment, EntityManagerInterface $entityManagerInterface): Response
     {
         /** @var User */
         $user = $this->getUser();
@@ -155,7 +155,7 @@ class UserController extends AbstractController
     /**
      * @Route("/{name}/stars", name="app_user_stars")
      */
-    public function showStars()
+    public function showStars(): Response
     {
         /** @var User */
         $user = $this->getUser();

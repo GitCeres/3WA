@@ -153,7 +153,7 @@ class FilmsController extends AbstractController
     /**
      * @Route("/films/delete/comment/{id}", name="app_films_delete_comment")
      */
-    public function deleteComment(Comment $comment, EntityManagerInterface $entityManagerInterface)
+    public function deleteComment(Comment $comment, EntityManagerInterface $entityManagerInterface): Response
     {    
         $filmSlug = $comment->getFilm()->getSlug();
     

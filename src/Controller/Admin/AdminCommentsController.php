@@ -27,7 +27,7 @@ class AdminCommentsController extends AbstractController
     /**
      * @Route("/admin/comment/show/{id}", name="app_admin_comment_show")
      */
-    public function show($id, CommentRepository $commentRepository)
+    public function show($id, CommentRepository $commentRepository): Response
     {
         $comment = $commentRepository->findOneBy([
             'id' => $id

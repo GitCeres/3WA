@@ -18,6 +18,7 @@
 		<body>
 	{% endif %}
         {% include "shared/_navbar.html.twig" %}
+			<div id="shadow"></div>
 		{% if app.request.attributes.get('_route') starts with 'app_films' %}
 			{% include "shared/_navbar_films.html.twig" %}
 			<div class="container-films">

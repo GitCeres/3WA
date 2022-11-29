@@ -17,15 +17,6 @@
                 <li>
                     <a href="{{ path('app_films') }}">Films</a>
                 </li>
-                <li>
-                    <a href="#">Encore</a>
-                </li>
-                <li>
-                    <a href="#">De nouveau</a>
-                </li>
-                <li>
-                    <a href="#">Voilà</a>
-                </li>
             </ul>
         </div>
     </div>
@@ -33,14 +24,20 @@
     <a href="{{ path('homepage') }}" class="nav-icon">Le Récap</a>
 
     <div class="nav-authentication">
-        <a href="{{ path('app_login') }}" class="login-mobile">
-            <i class="fa-solid fa-user"></i>
-        </a>
-
+        {% if app.user %}
+            <a href="{{ path('app_account') }}" class="login-mobile">
+                <i class="fa-solid fa-user"></i>
+            </a>
+        {% else %}
+            <a href="{{ path('app_login') }}" class="login-mobile">
+                <i class="fa-regular fa-user"></i>
+            </a>
+        {% endif %}
+        
         <div class="sign-btn">
             {% if app.user %}
-                <a href="{{ path('app_logout') }}" class="btn-sign">Déconnexion</a>
                 <a href="{{ path('app_account') }}" class="btn-sign">Compte</a>
+                <a href="{{ path('app_logout') }}" class="btn-sign">Déconnexion</a>
             {% else %}
                 <a href="{{ path('app_login') }}" class="btn-sign">S'identifier</a>
                 <a href="{{ path('app_register') }}" class="btn-sign">S'enregistrer</a>
