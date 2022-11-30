@@ -177,7 +177,7 @@ footer {
 
 .title-footer {
     margin-bottom: 2rem;
-    padding-top: 2rem;
+    padding-top: 1rem;
     font-weight: 500;
     font-size: 2rem;
     color: rgba(229, 229, 229, 1);
@@ -675,6 +675,10 @@ a {
     display: block;
 }
 
+.account>div:nth-child(2) {
+    grid-area: 1 / 2 / 2 / 3;
+}
+
 .account-aside {
     display: flex;
     flex-direction: column;
@@ -691,7 +695,7 @@ a {
     justify-content: center;
     background: rgba(126, 69, 213, 1);
     border-bottom: 1px solid rgba(0, 0, 0, 0.35);
-    padding: 0.5rem;
+    padding: 1rem 2rem;
 }
 
 .account-aside a:hover {
@@ -748,6 +752,7 @@ a {
 .user-delete {
     display: flex;
     justify-content: center;
+    text-align: center;
     font-size: 1.5rem;
     font-weight: bold;
     color: rgb(255 0 24);
@@ -940,6 +945,10 @@ a {
         display: grid;
         grid-template-columns: 30% 65%;
         grid-gap: 0 5%;
+    }
+
+    .account-aside {
+        position: fixed;
     }
 
     #register,

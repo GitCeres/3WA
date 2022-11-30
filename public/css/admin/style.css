@@ -413,6 +413,7 @@ td.action-btn a:nth-last-child(1) {
 .user-delete {
     display: flex;
     justify-content: center;
+    text-align: center;
     font-size: 1.5rem;
     font-weight: bold;
     color: rgb(255 0 24);
