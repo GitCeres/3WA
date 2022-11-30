@@ -2,6 +2,7 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\User;
 use App\Form\AdminEditUserType;
 use App\Form\AdminDeleteUserType;
 use App\Repository\UserRepository;
@@ -15,6 +16,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class AdminUsersController extends AbstractController
 {
     /**
+     * Show all users with details on back office
+     * 
      * @Route("/admin/users", name="app_admin_users")
      */
     public function list(UserRepository $UserRepository): Response
@@ -29,29 +32,25 @@ class AdminUsersController extends AbstractController
     }
 
     /**
+     * Show one user on back office
+     * 
      * @Route("/admin/user/show/{id}", name="app_admin_user_show")
      */
-    public function show($id, UserRepository $userRepository)
+    public function show(User $user)
     {
-        $user = $userRepository->findOneBy([
-            'id' => $id
-        ]);
-        
         return $this->render('admin/users/show.html.twig', [
             'user' => $user
         ]);
     }
 
     /**
+     * Edit one user on back office
+     * 
      * @Route("/admin/user/edit/{id}", name="app_admin_user_edit")
      * @IsGranted("ROLE_ADMIN")
      */
-    public function edit($id, UserRepository $userRepository, Request $request, EntityManagerInterface $entityManagerInterface): Response
+    public function edit(User $user, Request $request, EntityManagerInterface $entityManagerInterface): Response
     {
-        $user = $userRepository->findOneBy([
-            'id' => $id
-        ]);
-
         $form = $this->createForm(AdminEditUserType::class, $user);
 
         $form->handleRequest($request);
@@ -60,27 +59,25 @@ class AdminUsersController extends AbstractController
             $entityManagerInterface->persist($user);
             $entityManagerInterface->flush();
 
-            $this->addFlash("success", "Le compte de l'utilisateur {$user->getFullName()} a bien été mis à jour");
+            $this->addFlash("success", sprintf("Le compte de l'utilisateur %s a bien été mis à jour", $user->getFullName()));
 
             return $this->redirectToRoute('app_admin_users');
         }
 
-        return $this->render('admin/users/edit.html.twig', [
-            'form' => $form->createView(),
+        return $this->renderForm('admin/users/edit.html.twig', [
+            'form' => $form,
             'user' => $user,
         ]);
     }
 
     /**
+     * Delete one user on back office
+     * 
      * @Route("/admin/user/delete/{id}", name="app_admin_user_delete")
      * @IsGranted("ROLE_ADMIN")
      */
-    public function delete($id, UserRepository $userRepository, Request $request, EntityManagerInterface $entityManagerInterface): Response
+    public function delete(User $user, Request $request, EntityManagerInterface $entityManagerInterface): Response
     {
-        $user = $userRepository->findOneBy([
-            'id' => $id
-        ]);
-
         $form = $this->createForm(AdminDeleteUserType::class, $user);
 
         $form->handleRequest($request);
@@ -90,13 +87,13 @@ class AdminUsersController extends AbstractController
             $entityManagerInterface->remove($user);
             $entityManagerInterface->flush();
 
-            $this->addFlash("success", "Le compte de l'utilisateur {$user->getFullName()} a bien été supprimé");
+            $this->addFlash("success", sprintf("Le compte de l'utilisateur %s a bien été supprimé", $user->getFullName()));
 
             return $this->redirectToRoute('app_admin_users');
         }
 
         return $this->render('admin/users/delete.html.twig', [
-            'form' => $form->createView(),
+            'form' => $form,
             'user' => $user,
         ]);
     }

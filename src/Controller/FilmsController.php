@@ -23,6 +23,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class FilmsController extends AbstractController
 {
     /**
+     * Show 3 lastest films
+     * 
      * @Route("/films", name="app_films")
      */
     public function index(FilmRepository $filmRepository): Response
@@ -30,11 +32,13 @@ class FilmsController extends AbstractController
         $films = $filmRepository->findBy([], ['createdAt' => 'DESC'], 3);
 
         return $this->render('films/index.html.twig', [
-            'films' => $films
+            'films' => $films,
         ]);
     }
 
     /**
+     * Create a new film
+     * 
      * @Route("/films/create", name="app_films_create")
      * @IsGranted("ROLE_MODO")
      */
@@ -56,15 +60,18 @@ class FilmsController extends AbstractController
             $entityManagerInterface->persist($film);
             $entityManagerInterface->flush();
 
+            $this->addFlash("success", sprintf("Le film %s a bien été créé", $film->getTitle()));
+
             return $this->redirectToRoute('app_films');
         }
 
-        return $this->render('films/create.html.twig', [
-            'form' => $form->createView()
+        return $this->renderForm('films/create.html.twig', [
+            'form' => $form,
         ]);
     }
 
     /**
+     * Show one film
      * @Route("/films/show/{slug}", name="app_films_show")
      */
     public function show($slug, FilmRepository $filmRepository, StarsRepository $starsRepository, CommentRepository $commentRepository, Request $request, EntityManagerInterface $entityManagerInterface): Response
@@ -132,27 +139,33 @@ class FilmsController extends AbstractController
             ]);
         }
 
-        return $this->render('films/show.html.twig', [
+        return $this->renderForm('films/show.html.twig', [
             'film' => $film,
             'comments' => $comments,
-            'formStars' => $formStars->createView(),
-            'formComment' => $formComment->createView(),
+            'formStars' => $formStars,
+            'formComment' => $formComment,
         ]);
     }
 
     /**
+     * Show all films
+     * 
      * @Route("/films/all", name="app_films_all")
      */
     public function allMovies(FilmRepository $filmRepository): Response
     {
-        $films = $filmRepository->findBy([], ['createdAt' => 'DESC']);
+        $films = $filmRepository->findBy([], [
+            'createdAt' => 'DESC'
+        ]);
 
         return $this->render('films/all.html.twig', [
-            'films' => $films
+            'films' => $films,
         ]);
     }
 
     /**
+     * Delete one comment
+     * 
      * @Route("/films/delete/comment/{id}", name="app_films_delete_comment")
      */
     public function deleteComment(Comment $comment, EntityManagerInterface $entityManagerInterface): Response

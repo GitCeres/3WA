@@ -2,6 +2,7 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\Comment;
 use App\Repository\CommentRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Response;
@@ -11,6 +12,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class AdminCommentsController extends AbstractController
 {
     /**
+     * Show all comments with details on back office
+     * 
      * @Route("/admin/comments", name="app_admin_comments")
      */
     public function list(CommentRepository $commentRepository): Response
@@ -25,32 +28,28 @@ class AdminCommentsController extends AbstractController
     }
 
     /**
+     * Show one comment on back office
+     * 
      * @Route("/admin/comment/show/{id}", name="app_admin_comment_show")
      */
-    public function show($id, CommentRepository $commentRepository): Response
+    public function show(Comment $comment): Response
     {
-        $comment = $commentRepository->findOneBy([
-            'id' => $id
-        ]);
-        
         return $this->render('admin/comments/show.html.twig', [
             'comment' => $comment
         ]);
     }
 
     /**
+     * Delete one comment on back office
+     * 
      * @Route("/admin/comment/delete/{id}", name="app_admin_comment_delete")
      */
-    public function delete($id, CommentRepository $commentRepository, EntityManagerInterface $entityManagerInterface): Response
+    public function delete(Comment $comment, EntityManagerInterface $entityManagerInterface): Response
     {
-        $comment = $commentRepository->findOneBy([
-            'id' => $id
-        ]);
-
         $entityManagerInterface->remove($comment);
         $entityManagerInterface->flush();
 
-        $this->addFlash("success", "Le commentaire de {$comment->getUser()->getFullName()} a bien été supprimée");
+        $this->addFlash("success", sprintf("Le commentaire de %s a bien été supprimée", $comment->getUser()->getFullName()));
 
         return $this->redirectToRoute('app_admin_comments');
     }

@@ -10,6 +10,8 @@ use Symfony\Component\Routing\Annotation\Route;
 class EscapeGameController extends AbstractController
 {
     /**
+     * Show part 1 escape game
+     * 
      * @Route("/escape_game", name="app_escape_game")
      */
     public function index(): Response
@@ -18,6 +20,7 @@ class EscapeGameController extends AbstractController
     }
 
     /**
+     * Show part 2 escape game
      * @Route("/escape_game/next", name="app_escape_game_next")
      */
     public function next(Request $request): Response

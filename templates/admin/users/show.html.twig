@@ -18,27 +18,31 @@
                 {% endfor %}
             </div>
 
-            <div class="back-office-stars-show">
-                {% for star in user.stars %}
-                    <h3 class="back-office-star-title">
-                        <a href="{{ path('app_films_show', {'slug' : star.film.slug }) }}">
-                            Film : {{ star.film.title }} {{ star.film.average }}/5
+            {% if user.stars | length > 0 %}
+                <div class="back-office-stars-show">
+                    {% for star in user.stars %}
+                        <h3 class="back-office-star-title">
+                            <a href="{{ path('app_films_show', {'slug' : star.film.slug }) }}">
+                                Film : {{ star.film.title }} {{ star.film.average }}/5
+                                <i class="fa-solid fa-star star-icon"></i>
+                            </a>
+                        </h3>
+                        <p>
+                            Note de {{ user.fullName }} : {{ star.number }}/5
                             <i class="fa-solid fa-star star-icon"></i>
-                        </a>
-                    </h3>
-                    <p>
-                        Note de {{ user.fullName }} : {{ star.number }}/5
-                        <i class="fa-solid fa-star star-icon"></i>
-                    </p>
-                {% endfor %}
-            </div>
-
-            <div class="back-office-comments-show">
-                {% for comment in user.comment %}
-                    <h3 class="account-comment-title">Film : <a href="{{ path('app_films_show', {'slug' : comment.film.slug }) }}">{{ comment.film.title }}</a></h3>
-                    {% include "films/_comment_card.html.twig" %}
-                {% endfor %}
-            </div>
+                        </p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+            
+            {% if user.comment | length > 0 %}
+                <div class="back-office-comments-show">
+                    {% for comment in user.comment %}
+                        <h3 class="account-comment-title">Film : <a href="{{ path('app_films_show', {'slug' : comment.film.slug }) }}">{{ comment.film.title }}</a></h3>
+                        {% include "films/_comment_card.html.twig" %}
+                    {% endfor %}
+                </div>
+            {% endif %}
         </div>
     </div>
 {% endblock %}

@@ -18,12 +18,12 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  */
 class User implements UserInterface
 {
-    const FEMMME = 'Femme';
-    const HOMME = 'Homme';
-    const AUTRE = 'Autre';
-    const ROLE_USER = 'ROLE_USER';
-    const ROLE_MODO = 'ROLE_MODO';
-    const ROLE_ADMIN = 'ROLE_ADMIN';
+    public const FEMMME = 'Femme';
+    public const HOMME = 'Homme';
+    public const AUTRE = 'Autre';
+    public const ROLE_USER = 'ROLE_USER';
+    public const ROLE_MODO = 'ROLE_MODO';
+    public const ROLE_ADMIN = 'ROLE_ADMIN';
 
     /**
      * @ORM\Id
@@ -202,9 +202,7 @@ class User implements UserInterface
 
     public function getFullName()
     {
-        $fullName = $this->getFirstName() . ' ' . $this->getLastName();
-
-        return $fullName;
+        return $this->getFirstName() . ' ' . $this->getLastName();
     }
 
     /**

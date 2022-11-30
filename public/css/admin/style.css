@@ -217,11 +217,11 @@ td.action-btn a:nth-last-child(1) {
 }
 
 /* Infos utilisateur */
-.back-office-infos-show,
-.back-office-stars-show {
-    padding-bottom: 1rem;
-    margin-bottom: 1rem;
-    box-shadow: inset 0px -1px 0px rgb(0 0 0 / 50%);
+.back-office-stars-show,
+.back-office-comments-show {
+    padding-top: 1rem;
+    margin-top: 1rem;
+    box-shadow: inset 0px 1px 0px rgb(0 0 0 / 50%);
 }
 
 .back-office-stars-show p {

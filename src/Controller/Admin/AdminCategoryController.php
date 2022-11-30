@@ -16,6 +16,8 @@ use Symfony\Component\String\Slugger\SluggerInterface;
 class AdminCategoryController extends AbstractController
 {
     /**
+     * Show all categories with details on back office
+     * 
      * @Route("/admin/category", name="app_admin_category")
      */
     public function list(CategoryRepository $categoryRepository): Response
@@ -30,14 +32,12 @@ class AdminCategoryController extends AbstractController
     }
 
     /**
+     * Show one category on back office
+     * 
      * @Route("/admin/category/show/{slug}", name="app_admin_category_show")
      */
-    public function show($slug, CategoryRepository $categoryRepository, FilmRepository $filmRepository): Response
+    public function show(FilmRepository $filmRepository, Category $category): Response
     {
-        $category = $categoryRepository->findOneBy([
-            'slug' => $slug
-        ]);
-
         $films = $filmRepository->findBy([
             'category' => $category
         ], [
@@ -51,14 +51,12 @@ class AdminCategoryController extends AbstractController
     }
 
     /**
+     * Edit one category on back office
+     * 
      * @Route("/admin/category/edit/{slug}", name="app_admin_category_edit")
      */
-    public function edit($slug, CategoryRepository $categoryRepository, Request $request, EntityManagerInterface $entityManagerInterface, SluggerInterface $slugger): Response
+    public function edit(Request $request, EntityManagerInterface $entityManagerInterface, SluggerInterface $slugger, Category $category): Response
     {
-        $category = $categoryRepository->findOneBy([
-            'slug' => $slug
-        ]);
-
         $form = $this->createForm(AdminEditCategoryType::class, $category);
 
         $form->handleRequest($request);
@@ -70,30 +68,28 @@ class AdminCategoryController extends AbstractController
             $entityManagerInterface->persist($category);
             $entityManagerInterface->flush();
 
-            $this->addFlash("success", "La catégorie {$category->getName()} a bien été mis à jour ");
+            $this->addFlash("success", sprintf("La catégorie %s a bien été mis à jour ", $category->getName()));
 
             return $this->redirectToRoute('app_admin_category');
         }
 
-        return $this->render('admin/category/edit.html.twig', [
-            'form' => $form->createView(),
+        return $this->renderForm('admin/category/edit.html.twig', [
+            'form' => $form,
             'category' => $category,
         ]);
     }
 
     /**
+     * Delete one category on back office
+     * 
      * @Route("/admin/category/delete/{slug}", name="app_admin_category_delete")
      */
-    public function delete($slug, CategoryRepository $categoryRepository, EntityManagerInterface $entityManagerInterface): Response
+    public function delete(Category $category, EntityManagerInterface $entityManagerInterface): Response
     {
-        $category = $categoryRepository->findOneBy([
-            'slug' => $slug
-        ]);
-
         $entityManagerInterface->remove($category);
         $entityManagerInterface->flush();
 
-        $this->addFlash("success", "La catégorie {$category->getName()} a bien été supprimée");
+        $this->addFlash("success", sprintf("La catégorie %s a bien été supprimée", $category->getName()));
 
         return $this->redirectToRoute('app_admin_category');
     }

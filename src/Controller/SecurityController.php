@@ -11,6 +11,8 @@ use App\Form\LoginType;
 class SecurityController extends AbstractController
 {
     /**
+     * Login page
+     * 
      * @Route("/login", name="app_login")
      */
     public function login(AuthenticationUtils $authenticationUtils): Response
@@ -25,15 +27,17 @@ class SecurityController extends AbstractController
 
         $lastUsername = $authenticationUtils->getLastUsername();
 
-        return $this->render('security/login.html.twig', 
+        return $this->renderForm('security/login.html.twig', 
         [
             'last_username' => $lastUsername,
-            'form' => $form->createView(),
+            'form' => $form,
             'error' => $error,
         ]);
     }
 
     /**
+     * Logout page
+     * 
      * @Route("/logout", name="app_logout")
      */
     public function logout(): void

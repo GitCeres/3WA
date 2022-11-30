@@ -13,14 +13,14 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasher;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class UserController extends AbstractController
 {
     /**
-     * Page pour s'enregistrer
+     * Register page
+     * 
      * @Route("/register", name="app_register")
      */
     public function register(EntityManagerInterface $entityManagerInterface, Request $request, UserPasswordHasherInterface $passwordHasher): Response
@@ -41,17 +41,19 @@ class UserController extends AbstractController
             $entityManagerInterface->persist($user);
             $entityManagerInterface->flush();
 
-            $this->addFlash("success", "Votre compte a bien été créé {$user->getFullName()}");
+            $this->addFlash("success", sprintf("Votre compte a bien été créé %s", $user->getFullName()));
 
             return $this->redirectToRoute('homepage');
         }
 
-        return $this->render('user/register.html.twig', [
-            'form' => $form->createView()
+        return $this->renderForm('user/register.html.twig', [
+            'form' => $form,
         ]);
     }
 
     /**
+     * Account user
+     * 
      * @Route("/account", name="app_account")
      */
     public function account(): Response
@@ -62,11 +64,13 @@ class UserController extends AbstractController
     }
 
     /**
+     * Change user firstName, lastName, email and gender
+     * 
      * @Route("/account/{name}/info", name="app_user_info")
      */
     public function info(Request $request, EntityManagerInterface $entityManagerInterface): Response
     {
-        /** @var User */
+        /** @var User $user */
         $user = $this->getUser();
 
         $form = $this->createForm(UserEditInfoType::class, $user);
@@ -77,7 +81,7 @@ class UserController extends AbstractController
             $entityManagerInterface->persist($user);
             $entityManagerInterface->flush();
 
-            $this->addFlash("success", "Votre compte a bien été mis à jour {$user->getFullName()}");
+            $this->addFlash("success", sprintf("Votre compte a bien été mis à jour %s", $user->getFullName()));
 
             return $this->redirectToRoute('app_account');
         }
@@ -89,11 +93,13 @@ class UserController extends AbstractController
     }
 
     /**
+     * Change user password
+     * 
      * @Route("/account/{name}/password", name="app_user_password")
      */
     public function changePassword(Request $request, EntityManagerInterface $entityManagerInterface, UserPasswordHasherInterface $passwordHasher): Response
     {
-        /** @var User */
+        /** @var User $user */
         $user = $this->getUser();
 
         $changePassword = new ChangePassword;
@@ -111,7 +117,7 @@ class UserController extends AbstractController
             $entityManagerInterface->persist($user);
             $entityManagerInterface->flush();
 
-            $this->addFlash("success", "Votre mot de passe a bien été mis à jour {$user->getFullName()}");
+            $this->addFlash("success", sprintf("Votre mot de passe a bien été mis à jour %s", $user->getFullName()));
 
             return $this->redirectToRoute('app_account');
         }
@@ -123,11 +129,13 @@ class UserController extends AbstractController
     }
 
     /**
+     * Show user comments
+     * 
      * @Route("/account/{name}/comments", name="app_user_comments")
      */
     public function showComments(): Response
     {
-        /** @var User */
+        /** @var User $user */
         $user = $this->getUser();
 
         return $this->render('user/comments.html.twig', [
@@ -136,11 +144,13 @@ class UserController extends AbstractController
     }
 
     /**
+     * Delete one user comment
+     * 
      * @Route("/account/{name}/delete/comment/{id}", name="app_user_delete_comment")
      */
     public function deleteComment(Comment $comment, EntityManagerInterface $entityManagerInterface): Response
     {
-        /** @var User */
+        /** @var User $user */
         $user = $this->getUser();
         
         $entityManagerInterface->remove($comment);
@@ -154,11 +164,13 @@ class UserController extends AbstractController
     }
 
     /**
+     * Show user stars for each films
+     * 
      * @Route("/account/{name}/stars", name="app_user_stars")
      */
     public function showStars(): Response
     {
-        /** @var User */
+        /** @var User $user */
         $user = $this->getUser();
 
         return $this->render('user/stars.html.twig', [
@@ -167,11 +179,13 @@ class UserController extends AbstractController
     }
 
     /**
+     * Delete user account
+     * 
      * @Route("/account/{name}/delete", name="app_user_delete")
      */
     public function deleteAccount(Request $request, EntityManagerInterface $entityManagerInterface): Response
     {
-        /** @var User */
+        /** @var User $user */
         $user = $this->getUser();
 
         $form = $this->createForm(UserDeleteAccountType::class, $user);
