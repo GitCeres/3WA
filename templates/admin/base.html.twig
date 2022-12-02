@@ -10,10 +10,14 @@
 		{% block stylesheets %}
 			<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 			<link rel="stylesheet" href="{{ asset('/css/admin/style.css') }}">
-			{% if app.user.mode == "light" %}
-					<link rel="stylesheet" href="{{ asset('/css/admin/light.css') }}">
+			{% if app.user %}
+				{% if app.user.mode == "light" %}
+						<link rel="stylesheet" href="{{ asset('/css/admin/light.css') }}">
+				{% elseif app.user.mode == "dark" %}
+						<link rel="stylesheet" href="{{ asset('/css/admin/dark.css') }}">
+				{% endif %}
 			{% else %}
-					<link rel="stylesheet" href="{{ asset('/css/admin/dark.css') }}">
+				<link rel="stylesheet" href="{{ asset('/css/light.css') }}">
 			{% endif %}
 		{% endblock %}
 	</head>
