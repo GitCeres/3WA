@@ -11,7 +11,6 @@
 html,
 body {
     height: 100%;
-    background: rgb(250 250 250);
 }
 
 body {
@@ -27,6 +26,28 @@ li {
     list-style-type: none;
 }
 
+input,
+textarea,
+select {
+    padding: 5px 10px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    margin-top: 5px;
+}
+
+input,
+textarea {
+    width: 100%;
+}
+
+input::file-selector-button {
+    cursor: pointer;
+}
+
+select {
+    display: block;
+}
+
 /* Nabar */
 #nav-main {
     z-index: 3;
@@ -35,7 +56,6 @@ li {
     width: 100%;
     align-items: center;
     padding: 15px 25px;
-    background: rgba(126, 69, 213, 1);
     color: rgba(229, 229, 229, 1);
     box-shadow: inset 0px -1px 0px rgba(0, 0, 0, 0.5);
     display: grid;
@@ -204,7 +224,6 @@ footer {
 
 .logo-networks {
     justify-content: center;
-    background: rgba(229, 229, 229, 1);
     border-radius: 5rem;
     padding: 2rem 8rem;
 }
@@ -344,7 +363,6 @@ a {
 }
 
 .active {
-    background: rgb(89 42 159) !important;
     color: rgba(255, 255, 255, 1) !important;
 }
 
@@ -356,7 +374,31 @@ a {
     flex-direction: column;
 }
 
-/* Formulaire d'enregistrement / connexion / edition */
+.home-for-back {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.home-for-back p {
+    margin-bottom: 1rem;
+}
+
+.home-for-back p:nth-last-child(1) {
+    margin-top: 2rem;
+    font-size: 1.5rem;
+}
+
+.home-for-back i {
+    font-size: 1.5rem;
+    color: rgba(126, 69, 213, 1);
+}
+
+.home-link {
+    color: rgba(255, 0, 0, 1)
+}
+
+/* Form : register / connexion / edition */
 #register,
 #user_edit_info,
 #user_edit_password {
@@ -367,32 +409,6 @@ a {
     display: flex;
     flex-direction: column;
     align-items: center;
-}
-
-#register div input,
-#register div select,
-#login div input,
-#login div select,
-#user_edit_info div input,
-#user_edit_info div select,
-#user_edit_password div input {
-    padding: 5px 10px;
-    border-radius: 5px;
-    border: 1px solid rgba(190, 190, 190, 1);
-    margin-bottom: 15px;
-    margin-top: 5px;
-}
-
-#register div input,
-#login div input,
-#user_edit_info div input,
-#user_edit_password div input {
-    width: 100%;
-}
-
-#register div select,
-#user_edit_info div select {
-    display: block;
 }
 
 #register li,
@@ -423,6 +439,9 @@ a {
     padding: 5px 10px;
     border-radius: 5px;
     border: 1px solid rgba(190, 190, 190, 1);
+    width: unset;
+    margin-bottom: unset;
+    margin-top: unset;
 }
 
 .question {
@@ -440,7 +459,6 @@ a {
     margin: 0 auto 30px auto;
     padding: 5px;
     border-radius: 5px;
-    background-color: rgba(220, 53, 69, 1);
     text-align: center;
     font-size: 1.5rem;
 }
@@ -450,7 +468,6 @@ a {
     margin: 0 auto 30px auto;
     padding: 5px;
     border-radius: 5px;
-    background-color: rgba(27, 163, 100, 1);
     text-align: center;
     font-size: 1.5rem;
 }
@@ -487,13 +504,8 @@ a {
     align-items: center;
     justify-content: center;
     color: rgba(255, 255, 255, 1);
-    background: rgba(89, 42, 159, 1);
     height: 50px;
     box-shadow: inset 0px -1px 0px rgb(0 0 0 / 15%);
-}
-
-#nav-films a:hover {
-    background-color: rgba(163, 110, 245, 1);
 }
 
 #nav-films ul {
@@ -520,19 +532,16 @@ a {
     width: 100%;
 }
 
-/* Carte des films */
+/* Cards for films */
 .card-film {
     border-radius: 15px;
-    border: 1px solid rgba(190, 190, 190, 1);
     display: grid;
     grid-template-rows: auto 1fr auto;
 }
 
 .card-title {
-    background: rgba(240, 240, 240, 1);
     display: flex;
     justify-content: center;
-    box-shadow: inset 0px -1px 0px rgba(190, 190, 190, 0.5);
     border-radius: 15px 15px 0 0;
 }
 
@@ -554,14 +563,12 @@ a {
 }
 
 .card-footer {
-    background: rgba(240, 240, 240, 1);
     display: flex;
     justify-content: end;
     border-radius: 0 0 15px 15px;
-    box-shadow: inset 0px 1px 0px rgba(190, 190, 190, 0.5);
 }
 
-/* Page d'un film */
+/* Films */
 .show {
     margin-bottom: 3rem;
 }
@@ -576,7 +583,6 @@ a {
 .show-content {
     display: flex;
     flex-direction: column;
-    background: rgba(240, 240, 240, 1);
     border-radius: 15px;
     padding: 1rem;
     align-self: self-start;
@@ -597,8 +603,6 @@ a {
 
 .star-icon {
     background: rgb(251, 238, 64);
-    background: radial-gradient(circle, rgba(251, 238, 64, 1) 0%, rgba(251, 205, 64, 1) 90%, rgba(0, 0, 0, 1) 100%);
-    -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
@@ -614,14 +618,11 @@ a {
 
 .card-comment {
     border-radius: 15px;
-    border: 1px solid rgba(190, 190, 190, 1);
 }
 
 .card-comment-title {
     display: flex;
     justify-content: space-between;
-    background: rgba(240, 240, 240, 1);
-    box-shadow: inset 0px -1px 0px rgba(190, 190, 190, 0.5);
     border-radius: 15px 15px 0 0;
 }
 
@@ -630,29 +631,15 @@ a {
     align-items: center;
 }
 
-/* Ajout de film / catégorie / commentaires */
+/* Create : film / cetagory / comment */
 #film,
 #category,
 #comment {
     margin-bottom: 10px;
 }
 
-#film div input,
-#film div select,
-#film div textarea,
-#category div input,
-#comment div textarea {
-    padding: 5px 10px;
-    border-radius: 5px;
-    border: 1px solid rgba(190, 190, 190, 1);
-    margin-bottom: 15px;
-    margin-top: 5px;
-}
-
-#film div input,
-#film div textarea,
-#comment div textarea {
-    width: 100%;
+#category div input {
+    width: unset;
 }
 
 #film div select {
@@ -670,7 +657,7 @@ a {
     flex-direction: column;
 }
 
-/* Compte */
+/* Account */
 .account {
     display: block;
 }
@@ -693,13 +680,8 @@ a {
 .account-aside a {
     display: flex;
     justify-content: center;
-    background: rgba(126, 69, 213, 1);
     border-bottom: 1px solid rgba(0, 0, 0, 0.35);
     padding: 1rem 2rem;
-}
-
-.account-aside a:hover {
-    background: rgba(163, 110, 245, 1);
 }
 
 .account-aside a:nth-child(1) {
@@ -712,18 +694,11 @@ a {
 
 .card-account {
     border-radius: 15px;
-    border: 1px solid rgba(190, 190, 190, 1);
     align-self: self-start;
     margin-bottom: 2rem;
 }
 
-.card-account a:hover>h3 {
-    background: rgba(163, 110, 245, 1);
-}
-
 .card-account h3 {
-    background: rgba(126, 69, 213, 1);
-    box-shadow: inset 0px -1px 0px rgb(190 190 190 / 50%);
     border-radius: 15px 15px 0 0;
     justify-content: center;
     text-align: center;
@@ -732,7 +707,6 @@ a {
 }
 
 .card-account p {
-    color: rgba(0, 0, 0, 1);
     padding: 0.5rem;
 }
 
@@ -745,10 +719,6 @@ a {
     color: rgba(0, 0, 0, 1);
 }
 
-.account-star-title a {
-    color: rgba(0, 0, 0, 1);
-}
-
 .user-delete {
     display: flex;
     justify-content: center;
@@ -758,7 +728,7 @@ a {
     color: rgb(255 0 24);
 }
 
-/* Boutons */
+/* Buttons */
 .btn {
     padding: 5px 10px;
     border: 1px solid transparent;
@@ -777,54 +747,12 @@ a {
     border-radius: 5px;
 }
 
-.btn-primary {
-    color: rgba(255, 255, 255, 1);
-    background-color: rgba(126, 69, 213, 1);
-    border-color: rgba(126, 69, 213, 1);
-    cursor: pointer;
-}
-
-.btn-primary:hover {
-    background-color: rgba(163, 110, 245, 1);
-    border-color: rgba(163, 110, 245, 1);
-}
-
-.btn-success {
-    color: rgba(255, 255, 255, 1);
-    background-color: rgba(27, 163, 100, 1);
-    border-color: rgba(27, 163, 100, 1);
-    cursor: pointer;
-}
-
-.btn-success:hover {
-    background-color: rgba(25, 135, 84, 1);
-    border-color: rgba(25, 135, 84, 1);
-}
-
-.btn-danger {
-    color: rgba(255, 255, 255, 1);
-    background-color: rgba(220, 53, 69, 1);
-    border-color: rgba(220, 53, 69, 1);
-    cursor: pointer;
-}
-
-.btn-warning {
-    color: rgba(255, 255, 255, 1);
-    background-color: #ffc107;
-    border-color: #ffc107;
-    cursor: pointer;
-}
-
+.btn-primary,
+.btn-success,
+.btn-danger,
 .btn-info {
     color: rgba(255, 255, 255, 1);
-    background-color: rgba(13, 202, 240, 1);
-    border-color: rgba(13, 202, 240, 1);
     cursor: pointer;
-}
-
-.btn-info:hover {
-    background-color: rgba(12, 186, 221, 1);
-    border-color: rgba(12, 186, 221, 1);
 }
 
 .btn-center {
@@ -832,43 +760,13 @@ a {
     margin: 20px auto 0 auto;
 }
 
-/* Messages Flash */
+/* Flash messages */
 .alert {
     position: relative;
     padding: 15px 15px;
     margin-bottom: 15px;
     border: 1px solid transparent;
     border-radius: 5px;
-}
-
-.alert-primary {
-    color: rgba(163, 110, 245, 1);
-    background-color: rgba(207, 226, 255, 1);
-    border-color: rgba(182, 212, 254, 1);
-}
-
-.alert-success {
-    color: rgba(15, 81, 50, 1);
-    background-color: rgba(209, 231, 221, 1);
-    border-color: rgba(186, 219, 204, 1);
-}
-
-.alert-danger {
-    color: rgba(132, 32, 41, 1);
-    background-color: rgba(248, 215, 218, 1);
-    border-color: rgba(245, 194, 199, 1);
-}
-
-.alert-warning {
-    color: rgba(102, 77, 3, 1);
-    background-color: rgba(255, 243, 205, 1);
-    border-color: rgba(255, 236, 181, 1);
-}
-
-.alert-info {
-    color: rgba(5, 81, 96, 1);
-    background-color: rgba(207, 244, 252, 1);
-    border-color: rgba(182, 239, 251, 1);
 }
 
 /* Responsive */
@@ -922,19 +820,6 @@ a {
 
     .sign-btn a {
         margin-right: 10px;
-        border: 2px solid rgba(163, 110, 245, 1);
-    }
-
-    .sign-btn a:hover {
-        background-color: rgba(163, 110, 245, 1);
-    }
-
-    .sign-btn a:nth-child(2) {
-        border: 2px solid rgba(163, 110, 245, 1);
-    }
-
-    .sign-btn a:nth-child(2):hover {
-        background-color: rgba(163, 110, 245, 1);
     }
 
     .container {
@@ -949,6 +834,7 @@ a {
 
     .account-aside {
         position: fixed;
+        top: 200px;
     }
 
     #register,
@@ -1041,11 +927,3 @@ a {
         margin: 30px auto 30px auto;
     }
 }
-
-/* Dark Theme */
-/* @media (prefers-color-scheme: dark) {
-    body {
-        background-color: black;
-        color: #ddd;
-    }
-} */

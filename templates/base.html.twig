@@ -7,9 +7,18 @@
 			{% block title %}{% endblock %}
 		</title>
 		<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-		<link rel="stylesheet" href="{{ asset('/css/style.css') }}">
 		{% block stylesheets %}
+			<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+			<link rel="stylesheet" href="{{ asset('/css/style.css') }}">
+			{% if app.user %}
+				{% if app.user.mode == "light" %}
+						<link rel="stylesheet" href="{{ asset('/css/light.css') }}">
+				{% elseif app.user.mode == "dark" %}
+						<link rel="stylesheet" href="{{ asset('/css/dark.css') }}">
+				{% endif %}
+			{% else %}
+				<link rel="stylesheet" href="{{ asset('/css/light.css') }}">
+			{% endif %}
 		{% endblock %}
 	</head>
 	{% if app.request.attributes.get('_route') starts with 'app_escape_game' %}

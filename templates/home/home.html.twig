@@ -4,7 +4,32 @@
 {% endblock %}
 
 {% block body %}
-	<h1 class="mb-3rem">Bienvenue sur Le Récap</h1>
-    <h2 class="center fs-2">Ici on va pouvoir tester mes compétences</h2>
+	<h1 class="mb-1rem">Bienvenue sur Le Récap</h1>
+
+    <h2 class="center fs-2 mb-3rem">Ici on va pouvoir tester mes compétences</h2>
+
+    <div class="mb-2rem">
+        <p>Dans la partie <a href="{{ path('app_escape_game') }}" class="home-link">Escape Game</a> il y aura un peu de Javascript</p>
+    </div>
+
+    <div class="mb-2rem">
+        <p>Dans la partie <a href="{{ path('app_films') }}" class="home-link">Film</a> il y aura de quoi montrer une grande partie de mes connaissances en Symfony</p>
+        <p>Les deux derniers films en exemple :</p>
+    </div>
+
+    <div class="card-grid-2 mb-2rem">
+        {% for film in films %}
+            {% include "films/_films_card.html.twig" %}
+        {% endfor %}
+    </div>
+    
+    {% if is_granted('ROLE_MODO') %}
+        <div class="home-for-back mb-2rem">
+            <p>Si tu lis ceci c'est que tu as le rôle "Modo" qui te permet de voir le back office</p>
+            <p>Tu peux tout faire partout sauf modifier les rôles, les données des utilisateurs ou supprimer des utilisateurs</p>
+            <p>Fait pas de bétises je te fais confiance <i class="fa-solid fa-face-smile-wink"></i></p>
+            <p>Le back office c'est par là, <a href="{{ path('app_admin') }}" class="home-link">clic ici</a></p>
+        </div>
+    {% endif %}
 
 {% endblock %}

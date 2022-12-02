@@ -29,7 +29,9 @@ class FilmsController extends AbstractController
      */
     public function index(FilmRepository $filmRepository): Response
     {
-        $films = $filmRepository->findBy([], ['createdAt' => 'DESC'], 3);
+        $films = $filmRepository->findBy([], [
+            'createdAt' => 'DESC'
+        ], 3);
 
         return $this->render('films/index.html.twig', [
             'films' => $films,
@@ -74,12 +76,8 @@ class FilmsController extends AbstractController
      * Show one film
      * @Route("/films/show/{slug}", name="app_films_show")
      */
-    public function show($slug, FilmRepository $filmRepository, StarsRepository $starsRepository, CommentRepository $commentRepository, Request $request, EntityManagerInterface $entityManagerInterface): Response
+    public function show(Film $film, StarsRepository $starsRepository, CommentRepository $commentRepository, Request $request, EntityManagerInterface $entityManagerInterface): Response
     {
-        $film = $filmRepository->findOneBy([
-            'slug' => $slug,
-        ]);
-
         $comments = $commentRepository->findBy([
             'film' => $film,
         ], [

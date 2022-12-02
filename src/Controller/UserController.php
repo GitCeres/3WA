@@ -7,6 +7,7 @@ use App\Entity\Comment;
 use App\Form\RegisterType;
 use App\Form\UserEditInfoType;
 use App\Form\Model\ChangePassword;
+use App\Form\ThemeType;
 use App\Form\UserEditPasswordType;
 use App\Form\UserDeleteAccountType;
 use Doctrine\ORM\EntityManagerInterface;
@@ -36,7 +37,8 @@ class UserController extends AbstractController
 
             $user->setPassword($passwordHasher->hashPassword($user, $password));
 
-            $user = $user->setRoles(['ROLE_USER']);
+            $user = $user->setRoles([User::ROLE_USER]);
+            $user = $user->setMode(User::MODE_LIGHT);
 
             $entityManagerInterface->persist($user);
             $entityManagerInterface->flush();
@@ -86,8 +88,8 @@ class UserController extends AbstractController
             return $this->redirectToRoute('app_account');
         }
 
-        return $this->render('user/info.html.twig', [
-            'form' => $form->createView(),
+        return $this->renderForm('user/info.html.twig', [
+            'form' => $form,
             'user' => $user,
         ]);
     }
@@ -122,8 +124,8 @@ class UserController extends AbstractController
             return $this->redirectToRoute('app_account');
         }
 
-        return $this->render('user/password.html.twig', [
-            'form' => $form->createView(),
+        return $this->renderForm('user/password.html.twig', [
+            'form' => $form,
             'user' => $user,
         ]);
     }
@@ -204,8 +206,37 @@ class UserController extends AbstractController
             return $this->redirectToRoute('homepage');
         }
 
-        return $this->render('user/delete.html.twig', [
-            'form' => $form->createView(),
+        return $this->renderForm('user/delete.html.twig', [
+            'form' => $form,
+            'user' => $user,
+        ]);
+    }
+
+    /**
+     * Change Theme mode
+     * 
+     * @Route("/account/{name}/theme", name="app_user_theme")
+     */
+    public function theme(Request $request, EntityManagerInterface $entityManagerInterface): Response
+    {
+        /** @var User $user */
+        $user = $this->getUser();
+
+        $form = $this->createForm(ThemeType::class, $user);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()){
+            $entityManagerInterface->persist($user);
+            $entityManagerInterface->flush();
+
+            $this->addFlash("success", sprintf("Vous utilisez désormais le thème %s", $user->getMode()));
+
+            return $this->redirectToRoute('app_account');
+        }
+
+        return $this->renderForm('user/theme.html.twig', [
+            'form' => $form,
             'user' => $user,
         ]);
     }

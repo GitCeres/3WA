@@ -24,6 +24,8 @@ class User implements UserInterface
     public const ROLE_USER = 'ROLE_USER';
     public const ROLE_MODO = 'ROLE_MODO';
     public const ROLE_ADMIN = 'ROLE_ADMIN';
+    public const MODE_LIGHT = 'light';
+    public const MODE_DARK = 'dark';
 
     /**
      * @ORM\Id
@@ -71,6 +73,11 @@ class User implements UserInterface
      * @ORM\OneToMany(targetEntity=Comment::class, mappedBy="user", orphanRemoval=true)
      */
     private $comment;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $mode;
 
     public function __construct()
     {
@@ -261,6 +268,18 @@ class User implements UserInterface
                 $comment->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getMode(): ?string
+    {
+        return $this->mode;
+    }
+
+    public function setMode(string $mode): self
+    {
+        $this->mode = $mode;
 
         return $this;
     }

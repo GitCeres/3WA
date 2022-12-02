@@ -16,9 +16,15 @@
     </div>
 
     <div class="card-button pr-1rem mb-1rem">
-        <a href="{{ path('app_films_show', {'slug' : film.slug }) }}" class="btn btn-primary">
-            Plus de détails
-        </a>
+        {% if app.request.attributes.get('_route') starts with 'app_admin' %}
+            <a href="{{ path('app_admin_film_show', { 'slug' : film.slug }) }}" class="btn btn-primary">
+                Plus de détails
+            </a>
+        {% else %}
+            <a href="{{ path('app_films_show', {'slug' : film.slug }) }}" class="btn btn-primary">
+                Plus de détails
+            </a>
+        {% endif %}
     </div>
 
     <div class="card-footer p-1rem">

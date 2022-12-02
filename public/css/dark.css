@@ -1,0 +1,204 @@
+/* Dark Theme */
+html,
+body {
+    background-color: rgba(0, 0, 0, 1);
+    color: rgba(229, 229, 229, 1);
+}
+
+input,
+textarea,
+select {
+    background-color: rgba(0, 0, 0, 1);
+    border: 1px solid rgba(50, 50, 50, 1);
+    color: rgba(229, 229, 229, 1);
+}
+
+input::file-selector-button {
+    background-color: rgba(50, 50, 50, 1);
+    color: rgba(229, 229, 229, 1);
+    cursor: pointer;
+}
+
+select {
+    color: rgba(229, 229, 229, 1);
+}
+
+.active {
+    background-color: rgba(57, 31, 98, 1) !important;
+}
+
+/* Navbar */
+#nav-main {
+    background: rgba(73, 33, 135, 1);
+}
+
+.hamburger {
+    background: rgba(73, 33, 135, 1);
+}
+
+.navlinks-container-slide {
+    background: rgba(73, 33, 135, 1);
+}
+
+/* Footer */
+footer {
+    background: rgba(73, 33, 135, 1);
+}
+
+.logo-networks {
+    background: rgba(200, 200, 200, 1)
+}
+
+/* Navbar Films */
+#nav-films a {
+    background: rgba(55, 25, 102, 1);
+}
+
+#nav-films a:hover {
+    background-color: rgba(66, 47, 96, 1);
+}
+
+/* Dark cards films */
+.card-film {
+    border: 1px solid rgba(50, 50, 50, 1);
+}
+
+.card-title,
+.card-footer {
+    background-color: rgba(50, 50, 50, 1);
+}
+
+.card-title {
+    box-shadow: inset 0px -1px 0px rgb(100 100 100 / 50%);
+}
+
+.card-footer {
+    box-shadow: inset 0px 1px 0px rgb(100 100 100 / 50%);
+}
+
+/* Escpae game */
+.question p {
+    color: rgba(0, 0, 0, 1);
+}
+
+.falseAnswer {
+    background-color: rgba(185, 46, 59, 1);
+}
+
+.goodAnswer {
+    background-color: rgba(0, 147, 79, 1);
+}
+
+.falseAnswer p,
+.goodAnswer p {
+    color: rgba(0, 0, 0, 1);
+}
+
+/* Film */
+.show-content {
+    background: rgba(0, 0, 0, 1);
+    border: 1px solid rgba(50, 50, 50, 1);
+}
+
+.star-icon {
+    background: radial-gradient(circle, rgb(177 168 50) 0%, rgba(251, 205, 64, 1) 90%, rgba(0, 0, 0, 1) 100%);
+    -webkit-background-clip: text;
+}
+
+.card-comment {
+    border: 1px solid rgba(50, 50, 50, 1);
+}
+
+.card-comment-title {
+    background-color: rgba(50, 50, 50, 1);
+    box-shadow: inset 0px -1px 0px rgb(100 100 100 / 50%);
+}
+
+/* Account */
+.account-aside a {
+    background: rgba(73, 33, 135, 1);
+}
+
+.account-aside a:hover {
+    background-color: rgba(66, 47, 96, 1);
+}
+
+.card-account {
+    border: 1px solid rgba(50, 50, 50, 1);
+}
+
+.card-account h3 {
+    background: rgba(73, 33, 135, 1);
+    box-shadow: inset 0px -1px 0px rgb(100 100 100 / 50%);
+}
+
+.card-account a:hover>h3 {
+    background-color: rgba(66, 47, 96, 1);
+}
+
+.card-account p {
+    color: rgba(229, 229, 229, 1);
+}
+
+.account-star-title a {
+    color: rgba(229, 229, 229, 1);
+}
+
+/* Dark buttons */
+.btn-primary {
+    background-color: rgba(73, 33, 135, 1);
+    border-color: rgba(73, 33, 135, 1);
+}
+
+.btn-primary:hover {
+    background-color: rgba(66, 47, 96, 1);
+    border-color: rgba(66, 47, 96, 1);
+}
+
+.btn-success {
+    background-color: rgba(0, 147, 79, 1);
+    border-color: rgba(0, 147, 79, 1);
+}
+
+.btn-success:hover {
+    background-color: rgba(0, 125, 67, 1);
+    border-color: rgba(0, 125, 67, 1);
+}
+
+.btn-danger {
+    background-color: rgba(185, 46, 59, 1);
+    border-color: rgba(185, 46, 59, 1);
+}
+
+.btn-info {
+    background-color: rgba(66, 146, 163, 1);
+    border-color: rgba(66, 146, 163, 1);
+}
+
+.btn-info:hover {
+    background-color: rgba(93, 188, 209, 1);
+    border-color: rgba(93, 188, 209, 1);
+}
+
+/* Flash messages */
+.alert-success {
+    color: rgb(255 255 255);
+    background-color: rgb(0 100 55);
+    border-color: rgb(44 157 88);
+}
+
+.alert-danger {
+    color: rgb(255 255 255);
+    background-color: rgba(94, 21, 27, 1);
+    border-color: rgba(187, 57, 70, 1);
+}
+
+@media only screen and (min-width: 768px) {
+    .sign-btn a {
+        border: 2px solid rgba(133, 91, 201, 1);
+    }
+
+    .sign-btn a:hover {
+        background-color: rgba(133, 91, 201, 1);
+    }
+}

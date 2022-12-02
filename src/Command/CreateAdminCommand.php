@@ -84,7 +84,8 @@ class CreateAdminCommand extends Command
              ->setPassword($this->passwordHasher->hashPassword($user, $password))
              ->setEmail($email)
              ->setGender($gender)
-             ->setRoles([User::ROLE_ADMIN]);
+             ->setRoles([User::ROLE_ADMIN])
+             ->setMode(User::MODE_LIGHT);
 
         $this->entityManagerInterface->persist($user);
         $this->entityManagerInterface->flush();

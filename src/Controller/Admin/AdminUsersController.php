@@ -92,7 +92,7 @@ class AdminUsersController extends AbstractController
             return $this->redirectToRoute('app_admin_users');
         }
 
-        return $this->render('admin/users/delete.html.twig', [
+        return $this->renderForm('admin/users/delete.html.twig', [
             'form' => $form,
             'user' => $user,
         ]);
