@@ -74,6 +74,15 @@ select {
 }
 
 /* Table */
+table td {
+    border-bottom: 1px solid rgba(190, 190, 190, 1);
+    background: rgba(126, 69, 213, 1);
+}
+
+table tr {
+    margin-bottom: 3rem;
+}
+
 thead {
     border-bottom: 2px solid rgba(0, 0, 0, 1);
 }
@@ -144,4 +153,14 @@ thead {
     color: rgba(15, 81, 50, 1);
     background-color: rgba(209, 231, 221, 1);
     border-color: rgba(186, 219, 204, 1);
+}
+
+@media only screen and (min-width: 768px) {
+    table td {
+        color: rgba(0, 0, 0, 1);
+    }
+
+    table tr {
+        margin-bottom: unset;
+    }
 }

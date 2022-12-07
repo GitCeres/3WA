@@ -97,6 +97,15 @@ select {
 }
 
 /* Table */
+table td {
+    border-bottom: 1px solid rgba(190, 190, 190, 1);
+    background: rgba(73, 33, 135, 1);
+}
+
+table tr {
+    margin-bottom: 3rem;
+}
+
 thead {
     border-bottom: 2px solid rgba(229, 229, 229, 1);
 }
@@ -167,4 +176,10 @@ thead {
     color: rgb(255 255 255);
     background-color: rgb(0 100 55);
     border-color: rgb(44 157 88);
+}
+
+@media only screen and (min-width: 768px) {
+    table tr {
+        margin-bottom: unset;
+    }
 }

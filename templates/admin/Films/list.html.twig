@@ -22,12 +22,12 @@
                 <tbody>
                     {% for film in films %}
                         <tr>
-                            <td>{{ film.title }}</td>
-                            <td>{{ film.category.name }}</td>
-                            <td>{{ film.director }}</td>
-                            <td>{{ film.synopsis | u.truncate(50, '...') }}</td>
-                            <td>{{ film.createdAt | date('d/m/Y') }}</td>
-                            <td>
+                            <td data-label="Titre">{{ film.title }}</td>
+                            <td data-label="Catégorie">{{ film.category.name }}</td>
+                            <td data-label="Réalisateur">{{ film.director }}</td>
+                            <td data-label="Synopsis">{{ film.synopsis | u.truncate(50, '...', false) }}</td>
+                            <td data-label="Date d'ajout">{{ film.createdAt | date('d/m/Y') }}</td>
+                            <td data-label="Note">
                                 {% if film.average == null %}
                                     Aucunes
                                 {% else %}

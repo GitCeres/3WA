@@ -8,12 +8,12 @@
     padding: 0;
 }
 
-html,
-body {
+html {
     height: 100%;
 }
 
 body {
+    min-height: 100%;
     display: flex;
     flex-direction: column;
 }
@@ -204,10 +204,6 @@ footer {
     font-family: 'Dancing Script', sans-serif;
 }
 
-.footer-link a {
-    margin-right: 15px;
-}
-
 .footer-col {
     display: flex;
     align-items: center;
@@ -223,13 +219,13 @@ footer {
 }
 
 .logo-networks {
-    justify-content: center;
+    justify-content: space-between;
     border-radius: 5rem;
-    padding: 2rem 8rem;
+    padding: 1rem;
 }
 
 .logo-networks a i {
-    font-size: 2.5rem;
+    font-size: 1.5rem;
 }
 
 #linkedin {
@@ -259,13 +255,13 @@ footer {
 .container {
     flex-grow: 1;
     padding: 0;
-    margin: 100px;
+    margin: 100px 10% 50px 10%;
 }
 
 .container-films {
     padding: 0;
     flex-grow: 1;
-    margin: 150px 10% 100px 10%;
+    margin: 150px 10% 50px 10%;
 }
 
 .container-footer {
@@ -280,6 +276,7 @@ ul {
 .center {
     display: flex;
     justify-content: center;
+    text-align: center;
 }
 
 button a,
@@ -669,6 +666,7 @@ a {
 .account-aside {
     display: flex;
     flex-direction: column;
+    text-align: center;
     align-self: self-start;
     border-radius: 15px;
     border-top: 1px solid rgba(0, 0, 0, 0.35);
@@ -780,6 +778,14 @@ a {
         grid-template-columns: 50% 50%;
     }
 
+    .footer-link a {
+        margin-right: 15px;
+    }
+
+    .logo-networks a i {
+        font-size: 2.5rem;
+    }
+
     #film,
     .card-grid-2,
     .card-grid-3 {
@@ -874,10 +880,6 @@ a {
         padding: 0 50px;
     }
 
-    .container {
-        margin-top: 125px;
-    }
-
     .footer-link {
         grid-template-columns: 25% 25% 25% 25%;
     }
@@ -912,14 +914,6 @@ a {
 @media only screen and (min-width: 1200px) {
     #nav-main {
         padding: 0 150px;
-    }
-
-    .container {
-        margin: 125px 10% 100px 10%;
-    }
-
-    .container-films {
-        margin: 150px 10% 100px 10%;
     }
 
     .login {

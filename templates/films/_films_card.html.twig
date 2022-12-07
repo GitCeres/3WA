@@ -1,6 +1,6 @@
 <div class="card-film mb-3rem">
     <div class="card-title p-1rem mb-1rem">
-        <h2>{{ film.title }}</h2>
+        <h2 class="center">{{ film.title }}</h2>
     </div>
 
     <div class="card-image mb-1rem px-1rem">
@@ -12,7 +12,7 @@
     </div>
 
     <div class="card-synopsis px-1rem mb-1rem">
-        <p>{{ film.synopsis | u.truncate(150, '...') }}</p>
+        <p>{{ film.synopsis | u.truncate(150, '...', false) }}</p>
     </div>
 
     <div class="card-button pr-1rem mb-1rem">

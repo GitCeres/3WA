@@ -42,7 +42,7 @@ textarea {
 }
 
 .container {
-    margin: 125px 5% 100px 5%;
+    margin: 125px 5% 50px 5%;
 }
 
 .active {
@@ -104,6 +104,7 @@ textarea {
 
 .nav-admin a {
     color: rgba(229, 229, 229, 1);
+    text-align: center;
 }
 
 .sign-btn {
@@ -113,7 +114,7 @@ textarea {
 }
 
 .sign-btn p {
-    margin-right: 10px;
+    text-align: center;
     margin-bottom: 5px;
 }
 
@@ -183,6 +184,39 @@ table {
     width: 100%;
 }
 
+table thead {
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+}
+
+table tr {
+    display: block;
+    margin-bottom: 3rem;
+}
+
+table td {
+    display: block;
+    text-align: right;
+    color: rgba(229, 229, 229, 1);
+}
+
+table td::before {
+    content: attr(data-label);
+    float: left;
+    font-weight: bold;
+}
+
+table td:last-child {
+    border-bottom: 0;
+    margin-top: 1rem;
+    background: unset;
+}
+
 tbody {
     text-align: center;
 }
@@ -194,17 +228,16 @@ td {
 
 td.action-btn {
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
 }
 
 td.action-btn a {
-    margin-bottom: 5px;
+    margin-right: 5px;
 }
 
 td.action-btn a:nth-last-child(1) {
-    margin-bottom: unset;
+    margin-right: unset;
 }
 
 /* User Infos */
@@ -450,11 +483,58 @@ td.action-btn a:nth-last-child(1) {
         grid-template-columns: 45% 45%;
         grid-gap: 0 10%;
     }
+
+    table thead {
+        clip: unset;
+        height: unset;
+        margin: unset;
+        overflow: unset;
+        padding: unset;
+        position: unset;
+        width: unset;
+    }
+    
+    table tr {
+        border-bottom: unset;
+        display: table-row;
+        margin-bottom: unset;
+    }
+
+    table td {
+        border-bottom: unset !important;
+        display: table-cell;
+        font-size: unset;
+        text-align: unset;
+        background: unset !important;
+    }
+
+    table td::before {
+        content: unset;
+    }
+
+    table td:last-child {
+        border-bottom: unset;
+        margin-top: unset;
+    }
+
+    td.action-btn {
+        flex-direction: column;
+    }
+
+    td.action-btn a {
+        margin-right: unset;
+        margin-bottom: 5px;
+    }
+    
+    td.action-btn a:nth-last-child(1) {
+        margin-bottom: unset;
+    }
 }
 
 @media only screen and (min-width: 992px) {
     .back-office {
-        grid-template-columns: 20% 80%;
+        grid-template-columns: 20% 75%;
+        grid-gap: 0 5%;
     }
 
     .back-office-content {
@@ -467,9 +547,7 @@ td.action-btn a:nth-last-child(1) {
         grid-template-columns: 60% 35%;
         grid-gap: 0 5%;
     }
-}
-
-@media only screen and (min-width: 1500px) {
+    
     td.action-btn {
         flex-direction: row;
     }
