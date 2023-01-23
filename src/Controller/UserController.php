@@ -10,6 +10,7 @@ use App\Form\Model\ChangePassword;
 use App\Form\ThemeType;
 use App\Form\UserEditPasswordType;
 use App\Form\UserDeleteAccountType;
+use Doctrine\DBAL\Connection;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -24,7 +25,7 @@ class UserController extends AbstractController
      * 
      * @Route("/register", name="app_register")
      */
-    public function register(EntityManagerInterface $entityManagerInterface, Request $request, UserPasswordHasherInterface $passwordHasher): Response
+    public function register(EntityManagerInterface $entityManagerInterface, Request $request, UserPasswordHasherInterface $passwordHasher, Connection $connection): Response
     {
         $user = new User;
 
@@ -35,13 +36,30 @@ class UserController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $password = $user->getPassword();
 
-            $user->setPassword($passwordHasher->hashPassword($user, $password));
+            $hashedPassword = $passwordHasher->hashPassword($user, $password);
+            $roles = json_encode([User::ROLE_USER]);
+            $mode = User::MODE_LIGHT;
 
-            $user = $user->setRoles([User::ROLE_USER]);
-            $user = $user->setMode(User::MODE_LIGHT);
+            $values = [
+                'first_name' => $user->getFirstName(), 
+                'last_name' => $user->getLastName(), 
+                'email' => $user->getEmail(), 
+                'password' => $hashedPassword, 
+                'roles' => $roles, 
+                'gender' => $user->getGender(), 
+                'mode' => $mode
+            ];
 
-            $entityManagerInterface->persist($user);
-            $entityManagerInterface->flush();
+            $connection->executeUpdate("INSERT INTO user (first_name, last_name, email, password, roles, gender, mode) VALUES (:first_name, :last_name, :email, :password, :roles, :gender, :mode)", $values);
+            $roles = json_decode($roles);
+
+            // $user->setPassword($passwordHasher->hashPassword($user, $password));
+
+            // $user = $user->setRoles([User::ROLE_USER]);
+            // $user = $user->setMode(User::MODE_LIGHT);
+
+            // $entityManagerInterface->persist($user);
+            // $entityManagerInterface->flush();
 
             $this->addFlash("success", sprintf("Votre compte a bien été créé %s", $user->getFullName()));
 
@@ -70,7 +88,7 @@ class UserController extends AbstractController
      * 
      * @Route("/account/{name}/info", name="app_user_info")
      */
-    public function info(Request $request, EntityManagerInterface $entityManagerInterface): Response
+    public function info(Request $request, EntityManagerInterface $entityManagerInterface, Connection $connection): Response
     {
         /** @var User $user */
         $user = $this->getUser();
@@ -80,8 +98,18 @@ class UserController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()){
-            $entityManagerInterface->persist($user);
-            $entityManagerInterface->flush();
+            $values = [
+                'firstName' => $user->getFirstName(),
+                'lastName' => $user->getLastName(),
+                'email' => $user->getEmail(),
+                'gender' => $user->getGender(),
+                'id' => $user->getId()
+            ];
+
+            $connection->executeUpdate("UPDATE user SET first_name = :firstName, last_name = :lastName, email = :email, gender = :gender WHERE id = :id", $values);
+
+            // $entityManagerInterface->persist($user);
+            // $entityManagerInterface->flush();
 
             $this->addFlash("success", sprintf("Votre compte a bien été mis à jour %s", $user->getFullName()));
 
@@ -150,13 +178,15 @@ class UserController extends AbstractController
      * 
      * @Route("/account/{name}/delete/comment/{id}", name="app_user_delete_comment")
      */
-    public function deleteComment(Comment $comment, EntityManagerInterface $entityManagerInterface): Response
+    public function deleteComment($id, Comment $comment, EntityManagerInterface $entityManagerInterface, Connection $connection): Response
     {
         /** @var User $user */
         $user = $this->getUser();
         
-        $entityManagerInterface->remove($comment);
-        $entityManagerInterface->flush();
+        $connection->executeUpdate("DELETE FROM comment WHERE id = :id", ['id' => $id]);
+
+        // $entityManagerInterface->remove($comment);
+        // $entityManagerInterface->flush();
     
         $this->addFlash("success", "Votre commentaire a bien été supprimé");
 
