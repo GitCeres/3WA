@@ -5,6 +5,20 @@
 {% block body %}
     <h1 class="shadow-escape-title">Vite, ça va exploser !!!</h1>
 
+    <h2 id="countdownEscape"></h2>
+
+    <div id="congrats" class="d-none">
+        <p class="mb-2rem">Bravo vous avez gagnés</p>
+
+        <button class="btn-success replay-escape" id="win-replay-escape"><a href="{{ path('app_escape_game') }}">Rejouer ?</a></button>
+    </div>
+
+    <div id="loose" class="d-none">
+        <p class="mb-2rem">Dommage, vous avez perdu</p>
+
+        <button class="btn-success replay-escape" id="loose-replay-escape"><a href="{{ path('app_escape_game') }}">Rejouer ?</a></button>
+    </div>
+
     <section>
         <div class="question">
             <p>En quelle année Christophe Colomb a découvert l'Amérique ?</p>

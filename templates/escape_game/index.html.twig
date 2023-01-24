@@ -5,6 +5,14 @@
 {% block body %}
     <h1 class="shadow-escape-title">Jouons à un petit jeu</h1>
 
+    <h2 id="countdownEscape"></h2>
+
+    <div id="loose" class="d-none">
+        <p class="mb-2rem">Dommage, vous avez perdu</p>
+
+        <button class="btn-success replay-escape" id="loose-replay-escape"><a href="{{ path('app_escape_game') }}">Rejouer ?</a></button>
+    </div>
+
     <section class="mb-3rem">
         <div class="question">
             <p>De quelle couleur est le cheval blanc d'Henry IV ?</p>

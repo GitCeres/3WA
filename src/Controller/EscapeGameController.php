@@ -14,8 +14,15 @@ class EscapeGameController extends AbstractController
      * 
      * @Route("/escape_game", name="app_escape_game")
      */
-    public function index(): Response
+    public function index(Request $request): Response
     {
+        $cookieFirstPart = $request->cookies->get('escape-p1');
+        $cookieEnded = $request->cookies->get('ended');
+
+        if ($cookieFirstPart || $cookieEnded) {
+            return $this->redirectToRoute('app_escape_game_next');
+        }
+
         return $this->render('escape_game/index.html.twig');
     }
 
@@ -25,12 +32,15 @@ class EscapeGameController extends AbstractController
      */
     public function next(Request $request): Response
     {
-        $cookie = $request->cookies->get('escape-p1');
+        $cookieFirstPart = $request->cookies->get('escape-p1');
+        $cookieEnded = $request->cookies->get('ended');
 
-        if ($cookie) {
-            return $this->render('escape_game/next.html.twig');
+        if (!$cookieFirstPart) {
+            if (!$cookieEnded) {
+                return $this->redirectToRoute('app_escape_game');
+            }
         }
 
-        return $this->redirectToRoute('app_escape_game');
+        return $this->render('escape_game/next.html.twig');
     }
 }
