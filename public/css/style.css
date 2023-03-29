@@ -219,7 +219,7 @@ footer {
 }
 
 .logo-networks {
-    justify-content: space-between;
+    justify-content: space-evenly;
     border-radius: 5rem;
     padding: 1rem;
 }
